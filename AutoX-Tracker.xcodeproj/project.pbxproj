@@ -42,7 +42,7 @@
 		22EBD3AB23B71C3C003E0E9E = {
 			isa = PBXGroup;
 			children = (
-				22EBD3B623B71C3C003E0E9E /* AutoX-Tracker */,
+				22EBD3B623B71C3C003E0E9E /* AutoX Tracker */,
 				22EBD3B523B71C3C003E0E9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,7 +55,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		22EBD3B623B71C3C003E0E9E /* AutoX-Tracker */ = {
+		22EBD3B623B71C3C003E0E9E /* AutoX Tracker */ = {
 			isa = PBXGroup;
 			children = (
 				22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */,
@@ -67,7 +67,7 @@
 				22EBD3C823B71C3D003E0E9E /* Info.plist */,
 				22EBD3C023B71C3C003E0E9E /* AutoX_Tracker.xcdatamodeld */,
 			);
-			path = "AutoX-Tracker";
+			path = "AutoX Tracker";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
