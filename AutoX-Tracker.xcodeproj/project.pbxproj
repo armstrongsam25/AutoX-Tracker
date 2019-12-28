@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		22EBD3B823B71C3C003E0E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */; };
 		22EBD3BA23B71C3C003E0E9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */; };
-		22EBD3BC23B71C3C003E0E9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3BB23B71C3C003E0E9E /* ViewController.swift */; };
+		22EBD3BC23B71C3C003E0E9E /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3BB23B71C3C003E0E9E /* MapVC.swift */; };
 		22EBD3BF23B71C3C003E0E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EBD3BD23B71C3C003E0E9E /* Main.storyboard */; };
 		22EBD3C223B71C3C003E0E9E /* AutoX_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3C023B71C3C003E0E9E /* AutoX_Tracker.xcdatamodeld */; };
 		22EBD3C423B71C3D003E0E9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22EBD3C323B71C3D003E0E9E /* Assets.xcassets */; };
@@ -20,7 +20,7 @@
 		22EBD3B423B71C3C003E0E9E /* AutoX Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AutoX Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		22EBD3BB23B71C3C003E0E9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		22EBD3BB23B71C3C003E0E9E /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		22EBD3BE23B71C3C003E0E9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		22EBD3C123B71C3C003E0E9E /* AutoX_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AutoX_Tracker.xcdatamodel; sourceTree = "<group>"; };
 		22EBD3C323B71C3D003E0E9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			children = (
 				22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */,
 				22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */,
-				22EBD3BB23B71C3C003E0E9E /* ViewController.swift */,
+				22EBD3BB23B71C3C003E0E9E /* MapVC.swift */,
 				22EBD3BD23B71C3C003E0E9E /* Main.storyboard */,
 				22EBD3C323B71C3D003E0E9E /* Assets.xcassets */,
 				22EBD3C523B71C3D003E0E9E /* LaunchScreen.storyboard */,
@@ -141,7 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22EBD3BC23B71C3C003E0E9E /* ViewController.swift in Sources */,
+				22EBD3BC23B71C3C003E0E9E /* MapVC.swift in Sources */,
 				22EBD3B823B71C3C003E0E9E /* AppDelegate.swift in Sources */,
 				22EBD3C223B71C3C003E0E9E /* AutoX_Tracker.xcdatamodeld in Sources */,
 				22EBD3BA23B71C3C003E0E9E /* SceneDelegate.swift in Sources */,
@@ -291,6 +291,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZSMMKYL58;
 				INFOPLIST_FILE = "AutoX Tracker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +299,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "to.us.spooked.AutoX-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -309,6 +310,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZSMMKYL58;
 				INFOPLIST_FILE = "AutoX Tracker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +318,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "to.us.spooked.AutoX-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
