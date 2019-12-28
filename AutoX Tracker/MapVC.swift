@@ -15,15 +15,20 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     var locationMgr: CLLocationManager?
     var initialLocation: CLLocation?
     var regionRadius: CLLocationDistance?
-    var didAllowLocation: Bool = false
+    var didAllowLocation: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
-        locationMgr?.requestWhenInUseAuthorization()
-        locationMgr?.startUpdatingLocation()
+        mapView.showsUserLocation = true
+        mapView.showsCompass = true
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            locationMgr!.startUpdatingLocation()
+        }else{
+            locationMgr!.requestWhenInUseAuthorization()
+        }
     }
     
 
@@ -33,10 +38,16 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
       mapView.setRegion(coordinateRegion, animated: true)
     }
     
+    
+    //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         //Allow Once and Allow while using both use this
         if status == .authorizedWhenInUse {
             didAllowLocation = true;
+            manager.startUpdatingLocation()
+        }
+        else if status == .notDetermined {
+            didAllowLocation = false
         }
         else {
             didAllowLocation = false
@@ -61,17 +72,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if didAllowLocation {
+        print("her")
             let locValue: CLLocationCoordinate2D = manager.location!.coordinate
             initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-            regionRadius = 950
+            regionRadius = 100
             centerMapOnLocation(location: initialLocation!)
-        }
-        else {
-            
-        }
     }
-
-
 }
 
