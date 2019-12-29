@@ -10,8 +10,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
+var capturedTracks = [[CLLocation]]()
+
 class MapVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
+
     var locationMgr: CLLocationManager?
     var initialLocation: CLLocation?
     var regionRadius: CLLocationDistance?
@@ -19,11 +22,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
-        mapView.showsUserLocation = true
-        mapView.showsCompass = true
+        mapView.showsUserLocation = true    //Add user location
+        mapView.showsCompass = false        //remove default compass
+        
+        //create new compass
+        let compassButton = MKCompassButton(mapView: mapView)
+        compassButton.compassVisibility = .visible
+        mapView.addSubview(compassButton)
+        compassButton.translatesAutoresizingMaskIntoConstraints = false
+        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
+        
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             locationMgr!.startUpdatingLocation()
         }else{
@@ -31,13 +42,28 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-
+    @IBOutlet weak var TrackingButtonAttrs: UIButton!
+    
+    // Start/stop tracking button
+    var isTracking: Bool = false
+    @IBAction func TrackingButton(_ sender: Any) {
+        if isTracking == false {
+            isTracking = true
+            TrackingButtonAttrs.backgroundColor = UIColor.red
+            TrackingButtonAttrs.setTitle("Stop Tracking Location", for: .normal)
+        }
+        else if isTracking == true {
+            isTracking = false
+            TrackingButtonAttrs.backgroundColor = UIColor.systemGreen
+            TrackingButtonAttrs.setTitle("Start Tracking Location", for: .normal)
+        }
+    }
+    
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
                                                   latitudinalMeters: regionRadius!, longitudinalMeters: regionRadius!)
       mapView.setRegion(coordinateRegion, animated: true)
     }
-    
     
     //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -72,7 +98,12 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("her")
+        //append locations to list here
+        if isTracking {
+            capturedTracks.append(locations)
+            
+        }
+        
             let locValue: CLLocationCoordinate2D = manager.location!.coordinate
             initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
             regionRadius = 100

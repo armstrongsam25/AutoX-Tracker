@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wqi-Ef-0fF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ta-6I-Xk3">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,34 +8,75 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--NavigationVC-->
+        <scene sceneID="fFP-LA-IM8">
+            <objects>
+                <navigationController title="NavigationVC" id="8ta-6I-Xk3" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="NR5-YW-kqQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Rockwell-Italic" family="Rockwell" pointSize="22"/>
+                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="-5"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wqi-Ef-0fF" kind="relationship" relationship="rootViewController" id="yWR-Uh-Idb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gSJ-cu-7TJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1445" y="32"/>
+        </scene>
         <!--MapVC-->
         <scene sceneID="RMz-hu-NTs">
             <objects>
                 <viewController title="MapVC" id="wqi-Ef-0fF" customClass="MapVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bfv-ls-BeY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KG4-Ls-kTg">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                             </mapView>
+                            <button opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jt7-iT-HBO">
+                                <rect key="frame" x="0.0" y="560" width="375" height="63"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="F39-ew-W5f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                <state key="normal" title="Start Tracking Location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="TrackingButton:" destination="wqi-Ef-0fF" eventType="touchUpInside" id="V5n-GC-nYQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="KG4-Ls-kTg" firstAttribute="top" secondItem="ko1-h8-KBa" secondAttribute="top" id="1qV-CZ-OXe"/>
                             <constraint firstItem="ko1-h8-KBa" firstAttribute="trailing" secondItem="KG4-Ls-kTg" secondAttribute="trailing" id="8HM-jy-4yx"/>
+                            <constraint firstItem="ko1-h8-KBa" firstAttribute="bottom" secondItem="jt7-iT-HBO" secondAttribute="bottom" id="9Za-Or-mn6"/>
                             <constraint firstItem="KG4-Ls-kTg" firstAttribute="leading" secondItem="ko1-h8-KBa" secondAttribute="leading" id="Pek-54-g7Q"/>
                             <constraint firstItem="ko1-h8-KBa" firstAttribute="bottom" secondItem="KG4-Ls-kTg" secondAttribute="bottom" id="qcb-dY-3on"/>
+                            <constraint firstItem="jt7-iT-HBO" firstAttribute="centerX" secondItem="bfv-ls-BeY" secondAttribute="centerX" id="sx1-uy-Q1O"/>
+                            <constraint firstItem="jt7-iT-HBO" firstAttribute="leading" secondItem="ko1-h8-KBa" secondAttribute="leading" id="uZv-Vn-fVM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ko1-h8-KBa"/>
                     </view>
+                    <navigationItem key="navigationItem" title="AutoX Tracker" largeTitleDisplayMode="always" id="Q29-o2-LgZ"/>
                     <connections>
+                        <outlet property="TrackingButtonAttrs" destination="jt7-iT-HBO" id="wic-JZ-HEH"/>
                         <outlet property="mapView" destination="KG4-Ls-kTg" id="tnh-eE-erm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4v-0f-Dar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="154" y="37"/>
+            <point key="canvasLocation" x="-508" y="31.934032983508249"/>
         </scene>
     </scenes>
 </document>
