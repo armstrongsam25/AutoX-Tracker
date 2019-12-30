@@ -11,10 +11,11 @@ import MapKit
 import CoreLocation
 
 var capturedTracks = [[CLLocation]]()
+var coordinantsForTracks = [CLLocationCoordinate2D]()
 
 class MapVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
-
+    
     var locationMgr: CLLocationManager?
     var initialLocation: CLLocation?
     var regionRadius: CLLocationDistance?
@@ -24,6 +25,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
+        mapView.delegate = self
         mapView.showsUserLocation = true    //Add user location
         mapView.showsCompass = false        //remove default compass
         
@@ -40,6 +42,12 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }else{
             locationMgr!.requestWhenInUseAuthorization()
         }
+        
+    }
+    
+    @IBAction func SavedButton(_ sender: Any) {
+        //Testing polyline
+
     }
     
     @IBOutlet weak var TrackingButtonAttrs: UIButton!
@@ -56,7 +64,36 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             isTracking = false
             TrackingButtonAttrs.backgroundColor = UIColor.systemGreen
             TrackingButtonAttrs.setTitle("Start Tracking Location", for: .normal)
+            for capturedTrack in capturedTracks {
+                coordinantsForTracks.append(capturedTrack[0].coordinate)
+            }
+            createPolyline(mapView: mapView)
         }
+    }
+    
+    func createPolyline(mapView: MKMapView) {
+        var points: [CLLocationCoordinate2D] = []
+        if coordinantsForTracks.count > 0 {
+            for coord in coordinantsForTracks {
+                let point = CLLocationCoordinate2DMake(coord.latitude, coord.longitude)
+                points.append(point)
+            }
+        }
+        else {
+            let alert = UIAlertController(title: "Not Enough Coordinants", message: "You did not move enough to record a track. Try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+
+        let geodesic = MKGeodesicPolyline(coordinates: points, count: points.count)
+        mapView.addOverlay(geodesic)
+
+        UIView.animate(withDuration: 1.5, animations: { () -> Void in
+            let span = MKCoordinateSpan(latitudeDelta: 0.0000000001, longitudeDelta: 0.0000000001)
+            let region1 = MKCoordinateRegion(center: points[0], span: span)
+            self.mapView.setRegion(region1, animated: true)
+        })
     }
     
     func centerMapOnLocation(location: CLLocation) {
@@ -101,9 +138,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         //append locations to list here
         if isTracking {
             capturedTracks.append(locations)
-            
         }
-        
+
             let locValue: CLLocationCoordinate2D = manager.location!.coordinate
             initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
             regionRadius = 100
@@ -111,3 +147,19 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
 }
 
+extension MapVC: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = .systemRed
+            polylineRenderer.lineWidth = 5
+            return polylineRenderer
+        } else if overlay is MKPolygon {
+            let polygonView = MKPolygonRenderer(overlay: overlay)
+            polygonView.fillColor = .systemBlue
+            return polygonView
+        }
+        return MKPolylineRenderer(overlay: overlay)
+    }
+    
+}
