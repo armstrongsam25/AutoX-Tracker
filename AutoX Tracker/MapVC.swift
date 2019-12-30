@@ -25,6 +25,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
+        
         mapView.delegate = self
         mapView.showsUserLocation = true    //Add user location
         mapView.showsCompass = false        //remove default compass
@@ -45,11 +46,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    @IBAction func SavedButton(_ sender: Any) {
-        //Testing polyline
-
-    }
-    
     @IBOutlet weak var TrackingButtonAttrs: UIButton!
     
     // Start/stop tracking button
@@ -57,11 +53,13 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     @IBAction func TrackingButton(_ sender: Any) {
         if isTracking == false {
             isTracking = true
+            locationMgr?.distanceFilter = 1
             TrackingButtonAttrs.backgroundColor = UIColor.red
             TrackingButtonAttrs.setTitle("Stop Tracking Location", for: .normal)
         }
         else if isTracking == true {
             isTracking = false
+            locationMgr?.distanceFilter = 10
             TrackingButtonAttrs.backgroundColor = UIColor.systemGreen
             TrackingButtonAttrs.setTitle("Start Tracking Location", for: .normal)
             for capturedTrack in capturedTracks {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ta-6I-Xk3">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -13,7 +13,7 @@
             <objects>
                 <navigationController title="NavigationVC" id="8ta-6I-Xk3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="NR5-YW-kqQ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Rockwell-Italic" family="Rockwell" pointSize="22"/>
@@ -34,14 +34,14 @@
             <objects>
                 <viewController title="MapVC" id="wqi-Ef-0fF" customClass="MapVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bfv-ls-BeY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KG4-Ls-kTg">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                             </mapView>
                             <button opaque="NO" contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jt7-iT-HBO">
-                                <rect key="frame" x="0.0" y="711" width="414" height="63"/>
+                                <rect key="frame" x="0.0" y="560" width="375" height="63"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="F39-ew-W5f"/>
@@ -71,20 +71,26 @@
                     <navigationItem key="navigationItem" title="AutoX Tracker" largeTitleDisplayMode="always" id="Q29-o2-LgZ">
                         <barButtonItem key="leftBarButtonItem" title="Help" style="plain" id="XVz-J4-tEq">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ud3-Li-SJf">
-                                <rect key="frame" x="20" y="3.5" width="92" height="37"/>
+                                <rect key="frame" x="16" y="3.5" width="50" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <size key="titleShadowOffset" width="-10" height="0.0"/>
                                 <state key="normal" title="Help">
                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Saved" image="star.fill" catalog="system" id="D3x-Bt-CDz">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="SavedButton:" destination="wqi-Ef-0fF" id="Gqd-rF-V1t"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" title="Help" style="plain" id="56k-8R-94z">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="M3i-i3-EZz">
+                                <rect key="frame" x="267" y="3.5" width="60" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" title="Saved">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -97,7 +103,4 @@
             <point key="canvasLocation" x="-508" y="31.934032983508249"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="star.fill" catalog="system" width="64" height="58"/>
-    </resources>
 </document>
