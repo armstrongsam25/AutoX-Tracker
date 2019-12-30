@@ -68,7 +68,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ko1-h8-KBa"/>
                     </view>
-                    <navigationItem key="navigationItem" title="AutoX Tracker" largeTitleDisplayMode="always" id="Q29-o2-LgZ"/>
+                    <navigationItem key="navigationItem" title="AutoX Tracker" largeTitleDisplayMode="always" id="Q29-o2-LgZ">
+                        <barButtonItem key="rightBarButtonItem" title="Saved" image="star.fill" catalog="system" id="D3x-Bt-CDz">
+                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="SavedButton:" destination="wqi-Ef-0fF" id="Gqd-rF-V1t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="TrackingButtonAttrs" destination="jt7-iT-HBO" id="wic-JZ-HEH"/>
                         <outlet property="mapView" destination="KG4-Ls-kTg" id="tnh-eE-erm"/>
@@ -79,4 +86,7 @@
             <point key="canvasLocation" x="-508" y="31.934032983508249"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star.fill" catalog="system" width="64" height="58"/>
+    </resources>
 </document>
