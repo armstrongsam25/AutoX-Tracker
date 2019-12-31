@@ -13,6 +13,7 @@ import CoreLocation
 // MARK: GLOBAL DECLARATIONS
 var capturedTracks = [[CLLocation]]()
 var coordinantsForTracks = [CLLocationCoordinate2D]()
+var savedTracks = [TrackModel]()
 
 class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: CLASS VARIABLES
@@ -102,17 +103,18 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             isTracking = true
             locationMgr?.distanceFilter = 1
             TrackingButtonAttrs.backgroundColor = UIColor.red
-            TrackingButtonAttrs.setTitle("Stop Tracking Location", for: .normal)
+            TrackingButtonAttrs.setTitle("Stop Tracking", for: .normal)
         }
         else if isTracking == true {
             isTracking = false
             locationMgr?.distanceFilter = 10
             TrackingButtonAttrs.backgroundColor = UIColor.systemGreen
-            TrackingButtonAttrs.setTitle("Start Tracking Location", for: .normal)
+            TrackingButtonAttrs.setTitle("Start Tracking", for: .normal)
             for capturedTrack in capturedTracks {
                 coordinantsForTracks.append(capturedTrack[0].coordinate)
             }
             createPolyline(mapView: mapView)
+            saveTheTrack()
         }
     }
     
@@ -122,14 +124,14 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         if isTracking {
             capturedTracks.append(locations)
         }
-
-            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-            initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-            regionRadius = 100
-            centerMapOnLocation(location: initialLocation!)
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+        initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        regionRadius = 100
+        centerMapOnLocation(location: initialLocation!)
     }
     
     // MARK: createPolyline()
+    var geodesic = MKGeodesicPolyline()
     func createPolyline(mapView: MKMapView) {
         var points: [CLLocationCoordinate2D] = []
         if coordinantsForTracks.count > 0 {
@@ -145,7 +147,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             return
         }
 
-        let geodesic = MKGeodesicPolyline(coordinates: points, count: points.count)
+        geodesic = MKGeodesicPolyline(coordinates: points, count: points.count)
         mapView.addOverlay(geodesic)
 
         UIView.animate(withDuration: 1.5, animations: { () -> Void in
@@ -153,6 +155,41 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             let region1 = MKCoordinateRegion(center: points[0], span: span)
             self.mapView.setRegion(region1, animated: true)
         })
+    }
+    
+    // MARK: saveTheTrack() 
+    func saveTheTrack(){
+        //present alert with text box
+        //Save or Discard options
+        let alert = UIAlertController(title: "Save Your Course", message: "Enter a name for your course.", preferredStyle: .alert)
+
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.placeholder = "Course #1"
+        }
+
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0]
+            // Call trackmodel here
+            if textField!.text! == "" {
+                let courseCount = savedTracks.count + 1
+                textField!.text = "Course #\(courseCount)"
+            }
+            let currentTrack = TrackModel(title: textField!.text!, coordinants: coordinantsForTracks)
+            savedTracks.append(currentTrack)
+            self.mapView.removeOverlay(self.geodesic)
+            capturedTracks.removeAll()
+            coordinantsForTracks.removeAll()
+        }))
+        alert.addAction(UIAlertAction(title: "Disgard", style: .cancel, handler: { [weak alert] (_) in
+            //remove polyline from screen
+            self.mapView.removeOverlay(self.geodesic)
+            capturedTracks.removeAll()
+            coordinantsForTracks.removeAll()
+        }))
+
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
     }
 } // End of MapVC Class
 

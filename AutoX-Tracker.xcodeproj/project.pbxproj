@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2253F10923BB172B00AF3F82 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253F10823BB172B00AF3F82 /* NavigationVC.swift */; };
 		22A07BD223BB25EF0007DA99 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A07BD123BB25EF0007DA99 /* SavedVC.swift */; };
+		22AE17E623BBCF5C00247A08 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE17E523BBCF5C00247A08 /* TrackModel.swift */; };
 		22EBD3B823B71C3C003E0E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */; };
 		22EBD3BA23B71C3C003E0E9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */; };
 		22EBD3BC23B71C3C003E0E9E /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3BB23B71C3C003E0E9E /* MapVC.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		2253F10823BB172B00AF3F82 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 		22A07BD123BB25EF0007DA99 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
+		22AE17E523BBCF5C00247A08 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 		22EBD3B423B71C3C003E0E9E /* AutoX Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AutoX Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				22EBD3C023B71C3C003E0E9E /* AutoX_Tracker.xcdatamodeld */,
 				2253F10823BB172B00AF3F82 /* NavigationVC.swift */,
 				22A07BD123BB25EF0007DA99 /* SavedVC.swift */,
+				22AE17E523BBCF5C00247A08 /* TrackModel.swift */,
 			);
 			path = "AutoX Tracker";
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			files = (
 				22EBD3BC23B71C3C003E0E9E /* MapVC.swift in Sources */,
 				22EBD3B823B71C3C003E0E9E /* AppDelegate.swift in Sources */,
+				22AE17E623BBCF5C00247A08 /* TrackModel.swift in Sources */,
 				22EBD3C223B71C3C003E0E9E /* AutoX_Tracker.xcdatamodeld in Sources */,
 				22EBD3BA23B71C3C003E0E9E /* SceneDelegate.swift in Sources */,
 				22A07BD223BB25EF0007DA99 /* SavedVC.swift in Sources */,

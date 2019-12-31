@@ -47,7 +47,7 @@
                                     <constraint firstAttribute="height" constant="63" id="F39-ew-W5f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
-                                <state key="normal" title="Start Tracking Location">
+                                <state key="normal" title="Start Tracking">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -69,7 +69,7 @@
                         <viewLayoutGuide key="safeArea" id="ko1-h8-KBa"/>
                     </view>
                     <navigationItem key="navigationItem" title="AutoX Tracker" largeTitleDisplayMode="always" id="Q29-o2-LgZ">
-                        <barButtonItem key="leftBarButtonItem" title="Help" style="plain" id="XVz-J4-tEq">
+                        <barButtonItem key="leftBarButtonItem" title="Help" id="XVz-J4-tEq">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ud3-Li-SJf">
                                 <rect key="frame" x="16" y="3.5" width="50" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -84,7 +84,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Help" style="plain" id="56k-8R-94z">
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="56k-8R-94z">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="M3i-i3-EZz">
                                 <rect key="frame" x="299" y="3.5" width="60" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -111,13 +111,13 @@
         <!--Saved-->
         <scene sceneID="TyK-3d-rte">
             <objects>
-                <tableViewController id="Ob9-Dp-2PZ" sceneMemberID="viewController">
+                <tableViewController id="Ob9-Dp-2PZ" customClass="SavedVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="azY-u3-ykd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="CourseList" rowHeight="92" id="e5I-WI-UNd">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="CourseList" rowHeight="92" id="e5I-WI-UNd" customClass="SavedCell" customModule="AutoX_Tracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="92"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e5I-WI-UNd" id="fd9-Ke-NPt">
@@ -159,6 +159,11 @@
                                         <constraint firstItem="IH3-lY-6ZG" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" id="wCZ-zc-e6r"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="courseImage" destination="Oa7-UM-i02" id="5kX-D9-iPc"/>
+                                    <outlet property="textLabel1" destination="IH3-lY-6ZG" id="S6d-gE-p93"/>
+                                    <outlet property="textLabel2" destination="KAN-h8-czK" id="1lY-JU-qF5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -185,12 +190,12 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gMt-kf-4VI">
                                 <rect key="frame" x="0.0" y="206" width="375" height="417"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">This app is designed to help you learn your autocross course by tracking your location as you walk the course. This will create a map of the course for you to view.  To start capturing the course tap the "Start Tracking" button.  Next, walk the course.  Once you are at the finish line, tap the "Stop Tracking" button.  You will now be asked what to name the course. Your course will be automatically saved.  </mutableString>
+                                <string key="text">This app is designed to help you learn your autocross course by tracking your location as you walk the course. This will create a map of the course for you to view.  To start capturing the course tap the "Start Tracking" button.  Next, walk the course.  Once you are at the finish line, tap the "Stop Tracking" button.  You will now be asked what to name the course. Your course will be automatically saved.  </string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6nD-oC-I74">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AutoX Tracker (rounded)" translatesAutoresizingMaskIntoConstraints="NO" id="6nD-oC-I74">
                                 <rect key="frame" x="123.5" y="5" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="IE6-o5-Ln0"/>
@@ -243,5 +248,8 @@
             <point key="canvasLocation" x="342" y="-308"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AutoX Tracker (rounded)" width="1000" height="1000"/>
+    </resources>
     <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
