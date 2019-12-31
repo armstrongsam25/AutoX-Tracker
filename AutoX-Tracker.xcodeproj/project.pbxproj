@@ -295,7 +295,7 @@
 		22EBD3CC23B71C3D003E0E9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AutoX Tracker icons";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZSMMKYL58;
 				INFOPLIST_FILE = "AutoX Tracker/Info.plist";
@@ -314,7 +314,7 @@
 		22EBD3CD23B71C3D003E0E9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AutoX Tracker icons";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZSMMKYL58;
 				INFOPLIST_FILE = "AutoX Tracker/Info.plist";
