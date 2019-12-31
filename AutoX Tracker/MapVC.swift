@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  AutoX Tracker
 //
-//  Created by Sam Armstrong on 12/28/19.
+//  Created by Samuel Armstrong on 12/28/19.
 //  Copyright © 2019 Samuel Armstrong. All rights reserved.
 //
 
@@ -10,27 +10,28 @@ import UIKit
 import MapKit
 import CoreLocation
 
+// MARK: GLOBAL DECLARATIONS
 var capturedTracks = [[CLLocation]]()
 var coordinantsForTracks = [CLLocationCoordinate2D]()
 
 class MapVC: UIViewController, CLLocationManagerDelegate {
-    @IBOutlet weak var mapView: MKMapView!
-    
+    // MARK: CLASS VARIABLES
+    @IBOutlet weak var mapView: MKMapView!  // Linking MapView
     var locationMgr: CLLocationManager?
     var initialLocation: CLLocation?
     var regionRadius: CLLocationDistance?
     var didAllowLocation: Bool?
     
+    // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
-        
         mapView.delegate = self
         mapView.showsUserLocation = true    //Add user location
         mapView.showsCompass = false        //remove default compass
         
-        //create new compass
+        //creating new compass
         let compassButton = MKCompassButton(mapView: mapView)
         compassButton.compassVisibility = .visible
         mapView.addSubview(compassButton)
@@ -38,16 +39,54 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
         compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
         
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+        // If user location is already authorized, start tracking. Else request to track location
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationMgr!.startUpdatingLocation()
-        }else{
+        } else {
             locationMgr!.requestWhenInUseAuthorization()
         }
-        
     }
     
-    @IBOutlet weak var TrackingButtonAttrs: UIButton!
+    // MARK: didChangeAuthorization
+    //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        //Allow Once and Allow while using both use this
+        if status == .authorizedWhenInUse {
+            didAllowLocation = true;
+            manager.startUpdatingLocation()
+        }
+        else if status == .notDetermined {
+            didAllowLocation = false
+        }
+        else {
+            didAllowLocation = false
+            let alert = UIAlertController(title: "Location Required!", message: "This app REQUIRES your location to function properly. Please allow location access in the settings app.", preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)") // Prints true
+                    })
+                }
+            }
+            alert.addAction(settingsAction)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
     
+    // MARK: centerMapOnLocation
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius!, longitudinalMeters: regionRadius!)
+      mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    // MARK: CONNECTING BUTTONS (Presses, Attributes)
+    @IBOutlet weak var TrackingButtonAttrs: UIButton!
     // Start/stop tracking button
     var isTracking: Bool = false
     @IBAction func TrackingButton(_ sender: Any) {
@@ -69,6 +108,20 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // MARK: didUpdateLocations
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //append locations to list here
+        if isTracking {
+            capturedTracks.append(locations)
+        }
+
+            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+            initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+            regionRadius = 100
+            centerMapOnLocation(location: initialLocation!)
+    }
+    
+    // MARK: createPolyline()
     func createPolyline(mapView: MKMapView) {
         var points: [CLLocationCoordinate2D] = []
         if coordinantsForTracks.count > 0 {
@@ -93,58 +146,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             self.mapView.setRegion(region1, animated: true)
         })
     }
-    
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-                                                  latitudinalMeters: regionRadius!, longitudinalMeters: regionRadius!)
-      mapView.setRegion(coordinateRegion, animated: true)
-    }
-    
-    //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //Allow Once and Allow while using both use this
-        if status == .authorizedWhenInUse {
-            didAllowLocation = true;
-            manager.startUpdatingLocation()
-        }
-        else if status == .notDetermined {
-            didAllowLocation = false
-        }
-        else {
-            didAllowLocation = false
-            let alert = UIAlertController(title: "Location Required!", message: "This app REQUIRES your location to function properly. Please allow location access in the settings app.", preferredStyle: .alert)
-            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+} // End of MapVC Class
 
-                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                        print("Settings opened: \(success)") // Prints true
-                    })
-                }
-            }
-            alert.addAction(settingsAction)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-        }
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //append locations to list here
-        if isTracking {
-            capturedTracks.append(locations)
-        }
-
-            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-            initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-            regionRadius = 100
-            centerMapOnLocation(location: initialLocation!)
-    }
-}
-
+// MARK: MapVC Delegate
 extension MapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
@@ -152,12 +156,12 @@ extension MapVC: MKMapViewDelegate {
             polylineRenderer.strokeColor = .systemRed
             polylineRenderer.lineWidth = 5
             return polylineRenderer
-        } else if overlay is MKPolygon {
+        }
+        /*else if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
             polygonView.fillColor = .systemBlue
             return polygonView
-        }
+        }*/
         return MKPolylineRenderer(overlay: overlay)
     }
-    
-}
+} // End of MapVC Delegate

@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  AutoX Tracker
 //
-//  Created by Sam Armstrong on 12/28/19.
+//  Created by Samuel Armstrong on 12/28/19.
 //  Copyright © 2019 Samuel Armstrong. All rights reserved.
 //
 
