@@ -9,16 +9,18 @@
 import UIKit
 import CoreLocation
 
-class TrackModel {
+public class TrackModel {
 
     // MARK: Properties
-    var image: UIImage?
-    var title: String
-    var dateCreated: String
-    var coordinants: [CLLocationCoordinate2D]
+    public var image: UIImage?
+    public var title: String
+    public var dateCreated: String
+    //var coordinants: [CLLocationCoordinate2D]
+    public var latArray: [Double]
+    public var lonArray: [Double]
     
     // MARK: Initialization
-    init(title: String, coordinants: [CLLocationCoordinate2D]){
+    init(title: String, lat: [Double], lon: [Double]){
         if title == "" {
             //set date as title
         }
@@ -29,13 +31,15 @@ class TrackModel {
         self.image = UIImage(named: "SavedTrackImage.png") // TODO: set to static image
         self.title = title
         self.dateCreated = formatter.string(from: date)
-        self.coordinants = coordinants
+        self.latArray = lat
+        self.lonArray = lon
     }
     
     init(){
         self.image = UIImage(named: "SavedTrackImage.png")
         self.title = ""
         self.dateCreated = ""
-        self.coordinants = [CLLocationCoordinate2D]()
+        self.latArray = []
+        self.lonArray = []
     }
 }

@@ -13,6 +13,8 @@ import CoreLocation
 // MARK: GLOBAL DECLARATIONS
 var capturedTracks = [[CLLocation]]()
 var coordinantsForTracks = [CLLocationCoordinate2D]()
+var latitudeForTracks = [Double]()
+var longitudeForTracks = [Double]()
 var savedTracks = [TrackModel]()
 
 class MapVC: UIViewController, CLLocationManagerDelegate {
@@ -112,6 +114,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             TrackingButtonAttrs.setTitle("Start Tracking", for: .normal)
             for capturedTrack in capturedTracks {
                 coordinantsForTracks.append(capturedTrack[0].coordinate)
+                latitudeForTracks.append(capturedTrack[0].coordinate.latitude)
+                longitudeForTracks.append(capturedTrack[0].coordinate.longitude)
             }
             createPolyline(mapView: mapView)
             saveTheTrack()
@@ -175,7 +179,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
                 let courseCount = savedTracks.count + 1
                 textField!.text = "Course #\(courseCount)"
             }
-            let currentTrack = TrackModel(title: textField!.text!, coordinants: coordinantsForTracks)
+            let currentTrack = TrackModel(title: textField!.text!, lat: latitudeForTracks, lon: longitudeForTracks)
             savedTracks.append(currentTrack)
             self.mapView.removeOverlay(self.geodesic)
             capturedTracks.removeAll()
