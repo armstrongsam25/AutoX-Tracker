@@ -35,6 +35,14 @@ public class TrackModel {
         self.lonArray = lon
     }
     
+    init(title: String, date: String, lat: [Double], lon: [Double]){
+        self.image = UIImage(named: "SavedTrackImage.png") // TODO: set to static image
+        self.title = title
+        self.dateCreated = date
+        self.latArray = lat
+        self.lonArray = lon
+    }
+    
     init(){
         self.image = UIImage(named: "SavedTrackImage.png")
         self.title = ""

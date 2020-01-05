@@ -48,6 +48,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         } else {
             locationMgr!.requestWhenInUseAuthorization()
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +123,31 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // MARK: User Data Support
+    func saveToUserDefaults(tracks: [TrackModel]) {
+        /*if tracks.count != 0 {
+            var count: Int = 0
+            for track in tracks {
+                UserDefaults.standard.set(track.title, forKey: "title\(count)")
+                UserDefaults.standard.set(track.dateCreated, forKey: "date\(count)")
+                UserDefaults.standard.set(track.latArray, forKey: "lat\(count)")
+                UserDefaults.standard.set(track.lonArray, forKey: "lon\(count)")
+                count += 1
+            }
+            UserDefaults.standard.set(count, forKey: "count")
+        }*/
+        var index: Int = 0
+        while index < tracks.count {
+            UserDefaults.standard.set(tracks[index].title, forKey: "title\(index)")
+            UserDefaults.standard.set(tracks[index].dateCreated, forKey: "date\(index)")
+            UserDefaults.standard.set(tracks[index].latArray, forKey: "lat\(index)")
+            UserDefaults.standard.set(tracks[index].lonArray, forKey: "lon\(index)")
+            index += 1
+        }
+        UserDefaults.standard.set(index, forKey: "count")
+        print("Saved to UserDefaults")
+    }
+    
     // MARK: didUpdateLocations
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //append locations to list here
@@ -181,6 +207,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             }
             let currentTrack = TrackModel(title: textField!.text!, lat: latitudeForTracks, lon: longitudeForTracks)
             savedTracks.append(currentTrack)
+            self.saveToUserDefaults(tracks: savedTracks)
             self.mapView.removeOverlay(self.geodesic)
             capturedTracks.removeAll()
             coordinantsForTracks.removeAll()
@@ -193,7 +220,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }))
 
         // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion:  nil)
+        
     }
 } // End of MapVC Class
 

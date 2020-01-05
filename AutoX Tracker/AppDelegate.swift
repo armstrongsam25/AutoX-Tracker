@@ -17,7 +17,13 @@ var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //removeAllUserDefaults();
+        loadFromUserDefaults()
         return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        
     }
 
     // MARK: UISceneSession Lifecycle
@@ -33,6 +39,48 @@ var window: UIWindow?
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    // MARK: User Data Support    
+    func loadFromUserDefaults() {
+        let count: Int = UserDefaults.standard.integer(forKey: "count")
+        print(count)
+        if count != 0 {
+            var index: Int = 0
+            while index < count {
+                print("title\(index)")
+                let title = UserDefaults.standard.string(forKey: "title\(index)") ?? "n/a"
+                let date = UserDefaults.standard.string(forKey: "date\(index)") ?? "n/a"
+                let latArray = UserDefaults.standard.array(forKey: "lat\(index)") as? [Double] ?? [Double]()
+                let lonArray =  UserDefaults.standard.array(forKey: "lon\(index)") as? [Double] ?? [Double]()
+                let currentTrack = TrackModel(title: title, date: date, lat: latArray, lon: lonArray)
+                savedTracks.append(currentTrack)
+                
+                index += 1
+            }
+        }
+    }
+    
+    func removeAllUserDefaults() {
+        let count: Int = UserDefaults.standard.integer(forKey: "count")
+        var index: Int = 0
+        while index <= count {
+            UserDefaults.standard.removeObject(forKey: "title\(index)")
+            UserDefaults.standard.removeObject(forKey: "date\(index)")
+            UserDefaults.standard.removeObject(forKey: "lat\(index)")
+            UserDefaults.standard.removeObject(forKey: "lon\(index)")
+            index += 1
+        }
+        UserDefaults.standard.set(0, forKey: "count")
+        UserDefaults.standard.synchronize()
+    }
+    
+    func removeUserDefaults(index: Int) {
+        UserDefaults.standard.removeObject(forKey: "title\(index)")
+        UserDefaults.standard.removeObject(forKey: "date\(index)")
+        UserDefaults.standard.removeObject(forKey: "lat\(index)")
+        UserDefaults.standard.removeObject(forKey: "lon\(index)")
+        UserDefaults.standard.synchronize()
     }
 
     // MARK: - Core Data stack
