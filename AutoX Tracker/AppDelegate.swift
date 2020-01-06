@@ -41,48 +41,7 @@ var window: UIWindow?
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    // MARK: User Data Support    
-    func loadFromUserDefaults() {
-        let count: Int = UserDefaults.standard.integer(forKey: "count")
-        print(count)
-        if count != 0 {
-            var index: Int = 0
-            while index < count {
-                print("title\(index)")
-                let title = UserDefaults.standard.string(forKey: "title\(index)") ?? "n/a"
-                let date = UserDefaults.standard.string(forKey: "date\(index)") ?? "n/a"
-                let latArray = UserDefaults.standard.array(forKey: "lat\(index)") as? [Double] ?? [Double]()
-                let lonArray =  UserDefaults.standard.array(forKey: "lon\(index)") as? [Double] ?? [Double]()
-                let currentTrack = TrackModel(title: title, date: date, lat: latArray, lon: lonArray)
-                savedTracks.append(currentTrack)
-                
-                index += 1
-            }
-        }
-    }
     
-    func removeAllUserDefaults() {
-        let count: Int = UserDefaults.standard.integer(forKey: "count")
-        var index: Int = 0
-        while index <= count {
-            UserDefaults.standard.removeObject(forKey: "title\(index)")
-            UserDefaults.standard.removeObject(forKey: "date\(index)")
-            UserDefaults.standard.removeObject(forKey: "lat\(index)")
-            UserDefaults.standard.removeObject(forKey: "lon\(index)")
-            index += 1
-        }
-        UserDefaults.standard.set(0, forKey: "count")
-        UserDefaults.standard.synchronize()
-    }
-    
-    func removeUserDefaults(index: Int) {
-        UserDefaults.standard.removeObject(forKey: "title\(index)")
-        UserDefaults.standard.removeObject(forKey: "date\(index)")
-        UserDefaults.standard.removeObject(forKey: "lat\(index)")
-        UserDefaults.standard.removeObject(forKey: "lon\(index)")
-        UserDefaults.standard.synchronize()
-    }
-
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
@@ -129,4 +88,68 @@ var window: UIWindow?
     }
 
 }
+
+// MARK: GLOBAL FUNCTIONS
+
+// MARK: saveToUserDefaults
+func saveToUserDefaults(tracks: [TrackModel]) {
+    var index: Int = 0
+    while index < tracks.count {
+        UserDefaults.standard.set(tracks[index].title, forKey: "title\(index)")
+        UserDefaults.standard.set(tracks[index].dateCreated, forKey: "date\(index)")
+        UserDefaults.standard.set(tracks[index].latArray, forKey: "lat\(index)")
+        UserDefaults.standard.set(tracks[index].lonArray, forKey: "lon\(index)")
+        index += 1
+    }
+    UserDefaults.standard.set(index, forKey: "count")
+    print("Saved to UserDefaults")
+}
+
+// MARK: loadFromUserDefaults
+func loadFromUserDefaults() {
+    let count: Int = UserDefaults.standard.integer(forKey: "count")
+    print(count)
+    if count != 0 {
+        var index: Int = 0
+        while index < count {
+            print("title\(index)")
+            let title = UserDefaults.standard.string(forKey: "title\(index)") ?? "n/a"
+            let date = UserDefaults.standard.string(forKey: "date\(index)") ?? "n/a"
+            let latArray = UserDefaults.standard.array(forKey: "lat\(index)") as? [Double] ?? [Double]()
+            let lonArray =  UserDefaults.standard.array(forKey: "lon\(index)") as? [Double] ?? [Double]()
+            let currentTrack = TrackModel(title: title, date: date, lat: latArray, lon: lonArray)
+            savedTracks.append(currentTrack)
+            
+            index += 1
+        }
+    }
+}
+
+// MARK: removeAllUserDefaults
+func removeAllUserDefaults() {
+    let count: Int = UserDefaults.standard.integer(forKey: "count")
+    var index: Int = 0
+    while index <= count {
+        UserDefaults.standard.removeObject(forKey: "title\(index)")
+        UserDefaults.standard.removeObject(forKey: "date\(index)")
+        UserDefaults.standard.removeObject(forKey: "lat\(index)")
+        UserDefaults.standard.removeObject(forKey: "lon\(index)")
+        index += 1
+    }
+    UserDefaults.standard.set(0, forKey: "count")
+    UserDefaults.standard.synchronize()
+}
+
+// MARK: removeUserDefaults at index
+func removeUserDefaults(index: Int) {
+    UserDefaults.standard.removeObject(forKey: "title\(index)")
+    UserDefaults.standard.removeObject(forKey: "date\(index)")
+    UserDefaults.standard.removeObject(forKey: "lat\(index)")
+    UserDefaults.standard.removeObject(forKey: "lon\(index)")
+    
+    let count: Int = UserDefaults.standard.integer(forKey: "count")
+    UserDefaults.standard.set(count - 1, forKey: "count")
+    UserDefaults.standard.synchronize()
+}
+
 
