@@ -21,14 +21,9 @@ var window: UIWindow?
         loadFromUserDefaults()
         return true
     }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        
-    }
 
     // MARK: UISceneSession Lifecycle
 
- 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
@@ -86,7 +81,6 @@ var window: UIWindow?
             }
         }
     }
-
 }
 
 // MARK: GLOBAL FUNCTIONS
@@ -102,24 +96,20 @@ func saveToUserDefaults(tracks: [TrackModel]) {
         index += 1
     }
     UserDefaults.standard.set(index, forKey: "count")
-    print("Saved to UserDefaults")
 }
 
 // MARK: loadFromUserDefaults
 func loadFromUserDefaults() {
     let count: Int = UserDefaults.standard.integer(forKey: "count")
-    print(count)
     if count != 0 {
         var index: Int = 0
         while index < count {
-            print("title\(index)")
             let title = UserDefaults.standard.string(forKey: "title\(index)") ?? "n/a"
             let date = UserDefaults.standard.string(forKey: "date\(index)") ?? "n/a"
             let latArray = UserDefaults.standard.array(forKey: "lat\(index)") as? [Double] ?? [Double]()
             let lonArray =  UserDefaults.standard.array(forKey: "lon\(index)") as? [Double] ?? [Double]()
             let currentTrack = TrackModel(title: title, date: date, lat: latArray, lon: lonArray)
             savedTracks.append(currentTrack)
-            
             index += 1
         }
     }
@@ -151,5 +141,3 @@ func removeUserDefaults(index: Int) {
     UserDefaults.standard.set(count - 1, forKey: "count")
     UserDefaults.standard.synchronize()
 }
-
-

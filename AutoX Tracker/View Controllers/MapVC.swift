@@ -72,7 +72,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
         else {
             didAllowLocation = false
-            let alert = UIAlertController(title: "Location Required!", message: "This app REQUIRES your location to function properly. Please allow location access in the settings app.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Location Required!", message: "This app requires your location to function properly. Please allow location access in Settings.", preferredStyle: .alert)
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                     return
@@ -80,7 +80,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
 
                 if UIApplication.shared.canOpenURL(settingsUrl) {
                     UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                        print("Settings opened: \(success)") // Prints true
+                        print("Settings opened: \(success)")
                     })
                 }
             }
