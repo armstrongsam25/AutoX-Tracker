@@ -35,6 +35,7 @@ class SavedCourseInfo: UIViewController {
         infoMap.removeOverlay(self.geodesic)
     }
     
+    // MARK: createInfoPolyline
     var geodesic = MKGeodesicPolyline()
     func createInfoPolyline(mapView: MKMapView) {
         var points: [CLLocationCoordinate2D] = []
