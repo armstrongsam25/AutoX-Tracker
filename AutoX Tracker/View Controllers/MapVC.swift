@@ -51,14 +51,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.title = "AutoX Tracker"
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationItem.title = "Back"
-    }
-    
     // MARK: didChangeAuthorization
     //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -201,6 +193,12 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         // 4. Present the alert.
         self.present(alert, animated: true, completion:  nil)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
     }
 } // End of MapVC Class
 
