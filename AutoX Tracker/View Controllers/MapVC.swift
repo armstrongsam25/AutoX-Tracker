@@ -123,8 +123,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: User Data Support
-    
     
     // MARK: didUpdateLocations
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -167,20 +165,21 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     // MARK: saveTheTrack() 
     func saveTheTrack(){
+        let courseCount = savedTracks.count + 1
         //present alert with text box
         //Save or Discard options
         let alert = UIAlertController(title: "Save Your Course", message: "Enter a name for your course.", preferredStyle: .alert)
 
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
-            textField.placeholder = "Course #1"
+            textField.placeholder = "Course #\(courseCount)"
         }
 
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             // Call trackmodel here
             if textField!.text! == "" {
-                let courseCount = savedTracks.count + 1
+                
                 textField!.text = "Course #\(courseCount)"
             }
             let currentTrack = TrackModel(title: textField!.text!, lat: latitudeForTracks, lon: longitudeForTracks)
@@ -189,6 +188,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             self.mapView.removeOverlay(self.geodesic)
             capturedTracks.removeAll()
             coordinantsForTracks.removeAll()
+            latitudeForTracks.removeAll()
+            longitudeForTracks.removeAll()
         }))
         alert.addAction(UIAlertAction(title: "Disgard", style: .cancel, handler: { [weak alert] (_) in
             //remove polyline from screen

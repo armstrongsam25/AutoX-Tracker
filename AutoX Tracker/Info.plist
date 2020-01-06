@@ -57,7 +57,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string>public.app-category.productivity</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

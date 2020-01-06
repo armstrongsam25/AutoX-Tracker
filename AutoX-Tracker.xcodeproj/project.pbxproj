@@ -10,6 +10,7 @@
 		2253F10923BB172B00AF3F82 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253F10823BB172B00AF3F82 /* NavigationVC.swift */; };
 		22A07BD223BB25EF0007DA99 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A07BD123BB25EF0007DA99 /* SavedVC.swift */; };
 		22AE17E623BBCF5C00247A08 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE17E523BBCF5C00247A08 /* TrackModel.swift */; };
+		22EB334823C2BC65001B0409 /* SavedCourseInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB334723C2BC65001B0409 /* SavedCourseInfoVC.swift */; };
 		22EBD3B823B71C3C003E0E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */; };
 		22EBD3BA23B71C3C003E0E9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */; };
 		22EBD3BC23B71C3C003E0E9E /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3BB23B71C3C003E0E9E /* MapVC.swift */; };
@@ -23,6 +24,7 @@
 		2253F10823BB172B00AF3F82 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 		22A07BD123BB25EF0007DA99 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 		22AE17E523BBCF5C00247A08 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		22EB334723C2BC65001B0409 /* SavedCourseInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCourseInfoVC.swift; sourceTree = "<group>"; };
 		22EBD3B423B71C3C003E0E9E /* AutoX Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AutoX Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22EB334923C2CFD1001B0409 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */,
+				22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		22EB334A23C2CFE6001B0409 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22AE17E523BBCF5C00247A08 /* TrackModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22EB334B23C2CFF6001B0409 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				22EBD3BB23B71C3C003E0E9E /* MapVC.swift */,
+				2253F10823BB172B00AF3F82 /* NavigationVC.swift */,
+				22A07BD123BB25EF0007DA99 /* SavedVC.swift */,
+				22EB334723C2BC65001B0409 /* SavedCourseInfoVC.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		22EB334C23C2D0BA001B0409 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				22EBD3BD23B71C3C003E0E9E /* Main.storyboard */,
+				22EBD3C523B71C3D003E0E9E /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		22EBD3AB23B71C3C003E0E9E = {
 			isa = PBXGroup;
 			children = (
@@ -64,17 +103,13 @@
 		22EBD3B623B71C3C003E0E9E /* AutoX Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */,
-				22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */,
-				22EBD3BB23B71C3C003E0E9E /* MapVC.swift */,
-				22EBD3BD23B71C3C003E0E9E /* Main.storyboard */,
+				22EB334C23C2D0BA001B0409 /* Storyboards */,
+				22EB334B23C2CFF6001B0409 /* View Controllers */,
+				22EB334A23C2CFE6001B0409 /* Models */,
+				22EB334923C2CFD1001B0409 /* Delegates */,
 				22EBD3C323B71C3D003E0E9E /* Assets.xcassets */,
-				22EBD3C523B71C3D003E0E9E /* LaunchScreen.storyboard */,
 				22EBD3C823B71C3D003E0E9E /* Info.plist */,
 				22EBD3C023B71C3C003E0E9E /* AutoX_Tracker.xcdatamodeld */,
-				2253F10823BB172B00AF3F82 /* NavigationVC.swift */,
-				22A07BD123BB25EF0007DA99 /* SavedVC.swift */,
-				22AE17E523BBCF5C00247A08 /* TrackModel.swift */,
 			);
 			path = "AutoX Tracker";
 			sourceTree = "<group>";
@@ -150,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22EB334823C2BC65001B0409 /* SavedCourseInfoVC.swift in Sources */,
 				22EBD3BC23B71C3C003E0E9E /* MapVC.swift in Sources */,
 				22EBD3B823B71C3C003E0E9E /* AppDelegate.swift in Sources */,
 				22AE17E623BBCF5C00247A08 /* TrackModel.swift in Sources */,

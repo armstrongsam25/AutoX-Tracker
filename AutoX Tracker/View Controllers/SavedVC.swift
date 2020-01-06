@@ -35,7 +35,7 @@ class SavedVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CourseList", for: indexPath) as! SavedCell
         cell.courseImage?.image = savedTracks[indexPath.row].image
         cell.textLabel1?.text = savedTracks[indexPath.row].title
-        cell.textLabel2?.text = savedTracks[indexPath.row].dateCreated
+        cell.textLabel2?.text = "Created: \(savedTracks[indexPath.row].dateCreated)"
         return cell
     }
     
@@ -77,16 +77,22 @@ class SavedVC: UITableViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let controller = segue.destination as! SavedCourseInfo
+                controller.savedLats = savedTracks[indexPath.row].latArray
+                controller.savedLons = savedTracks[indexPath.row].lonArray
+                controller.viewTitle = savedTracks[indexPath.row].title
+            }
+        }
     }
-    */
-
 }
 
 class SavedCell: UITableViewCell {

@@ -163,6 +163,7 @@
                                     <outlet property="courseImage" destination="Oa7-UM-i02" id="5kX-D9-iPc"/>
                                     <outlet property="textLabel1" destination="IH3-lY-6ZG" id="S6d-gE-p93"/>
                                     <outlet property="textLabel2" destination="KAN-h8-czK" id="1lY-JU-qF5"/>
+                                    <segue destination="2wz-hH-jPh" kind="show" identifier="showDetail" id="TK2-Kj-nXe"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -178,6 +179,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BCh-eR-MYf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="341.60000000000002" y="409.7451274362819"/>
+        </scene>
+        <!--SavedCourseInfo-->
+        <scene sceneID="H3S-Vq-kHB">
+            <objects>
+                <viewController title="SavedCourseInfo" id="2wz-hH-jPh" customClass="SavedCourseInfo" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xud-aI-QTB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="67c-cP-DYc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DkR-Eo-S6z" firstAttribute="trailing" secondItem="67c-cP-DYc" secondAttribute="trailing" id="LMw-1r-ynA"/>
+                            <constraint firstItem="DkR-Eo-S6z" firstAttribute="bottom" secondItem="67c-cP-DYc" secondAttribute="bottom" id="LUt-fi-Wuh"/>
+                            <constraint firstItem="67c-cP-DYc" firstAttribute="leading" secondItem="DkR-Eo-S6z" secondAttribute="leading" id="R7W-3X-wg0"/>
+                            <constraint firstItem="67c-cP-DYc" firstAttribute="top" secondItem="DkR-Eo-S6z" secondAttribute="top" id="qZL-F7-45d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DkR-Eo-S6z"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uhB-TL-Je8"/>
+                    <connections>
+                        <outlet property="infoMap" destination="67c-cP-DYc" id="Ijq-or-12H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fRH-Od-TyU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1353" y="415"/>
         </scene>
         <!--AutoX Tracker-->
         <scene sceneID="E31-bZ-6rK">
