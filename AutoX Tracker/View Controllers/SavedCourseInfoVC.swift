@@ -9,8 +9,9 @@
 import UIKit
 import MapKit
 
-class SavedCourseInfo: UIViewController {
+class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var infoMap: MKMapView!
+    var infoMapMgr: CLLocationManager?
     var savedLats: [Double] = []
     var savedLons: [Double] = []
     var viewTitle: String = ""
@@ -18,7 +19,10 @@ class SavedCourseInfo: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createInfoPolyline(mapView: infoMap)
+        infoMapMgr = CLLocationManager()
+        infoMapMgr?.delegate = self
         infoMap.delegate = self
+        infoMap.showsUserLocation = true
         self.navigationItem.title = viewTitle
         
         infoMap.showsCompass = false        //remove default compass
@@ -29,10 +33,17 @@ class SavedCourseInfo: UIViewController {
         compassButton.translatesAutoresizingMaskIntoConstraints = false
         compassButton.trailingAnchor.constraint(equalTo: infoMap.trailingAnchor, constant: -12).isActive = true
         compassButton.topAnchor.constraint(equalTo: infoMap.topAnchor, constant: 12).isActive = true
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            infoMapMgr!.startUpdatingLocation()
+        } else {
+            infoMapMgr!.requestWhenInUseAuthorization()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         infoMap.removeOverlay(self.geodesic)
+        infoMapMgr!.stopUpdatingLocation()
     }
     
     // MARK: createInfoPolyline
@@ -57,6 +68,21 @@ class SavedCourseInfo: UIViewController {
         })
     }
     
+    // MARK: didUpdateLocations
+    var regionRadius: Double = 100
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+        let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        regionRadius = 100
+        centerMapOnLocation(location: initialLocation)
+    }
+    
+    // MARK: centerMapOnLocation
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+      infoMap.setRegion(coordinateRegion, animated: true)
+    }
 
     /*
     // MARK: - Navigation

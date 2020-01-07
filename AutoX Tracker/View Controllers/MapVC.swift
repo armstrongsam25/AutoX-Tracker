@@ -45,6 +45,22 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         // If user location is already authorized, start tracking. Else request to track location
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationMgr!.startUpdatingLocation()
+        } else if CLLocationManager.authorizationStatus() == .denied{
+            let alert = UIAlertController(title: "Location Required!", message: "This app requires your location to function properly. Please allow location access in Settings.", preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)")
+                    })
+                }
+            }
+            alert.addAction(settingsAction)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
         } else {
             locationMgr!.requestWhenInUseAuthorization()
         }
@@ -195,6 +211,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
