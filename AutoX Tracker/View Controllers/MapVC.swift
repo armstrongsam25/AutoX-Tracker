@@ -21,8 +21,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: CLASS VARIABLES
     @IBOutlet weak var mapView: MKMapView!  // Linking MapView
     var locationMgr: CLLocationManager?
-    var initialLocation: CLLocation?
-    var regionRadius: CLLocationDistance?
+    //var initialLocation: CLLocation
+    var regionRadius: CLLocationDistance = 100
     var didAllowLocation: Bool?
     
     // MARK: viewDidLoad()
@@ -33,8 +33,20 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         mapView.delegate = self
         mapView.showsUserLocation = true    //Add user location
         mapView.showsCompass = false        //remove default compass
+        mapView.showsPointsOfInterest = false
         
-        //creating new compass
+        //creating new location tracker button
+        let trackingBtn = MKUserTrackingButton(mapView: mapView)
+        mapView.addSubview(trackingBtn)
+        trackingBtn.translatesAutoresizingMaskIntoConstraints = false
+        trackingBtn.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+        trackingBtn.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 55).isActive = true
+        trackingBtn.backgroundColor = UIColor.black
+        trackingBtn.layer.cornerRadius = trackingBtn.frame.width/8.0
+        trackingBtn.layer.masksToBounds = true
+//        mapView.setUserTrackingMode(.followWithHeading, animated: true)
+        
+        //creating new compass button
         let compassButton = MKCompassButton(mapView: mapView)
         compassButton.compassVisibility = .visible
         mapView.addSubview(compassButton)
@@ -101,7 +113,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: centerMapOnLocation
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-                                                  latitudinalMeters: regionRadius!, longitudinalMeters: regionRadius!)
+                                                  latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
       mapView.setRegion(coordinateRegion, animated: true)
     }
     
@@ -133,15 +145,18 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     
     // MARK: didUpdateLocations
+    var isFirstUpdate = true
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //append locations to list here
         if isTracking {
             capturedTracks.append(locations)
         }
         let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-        initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-        regionRadius = 100
-        centerMapOnLocation(location: initialLocation!)
+        let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        if isFirstUpdate {
+            centerMapOnLocation(location: initialLocation)
+            isFirstUpdate = false
+        }
     }
     
     // MARK: createPolyline()
@@ -165,9 +180,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         mapView.addOverlay(geodesic)
 
         UIView.animate(withDuration: 1.5, animations: { () -> Void in
-            let span = MKCoordinateSpan(latitudeDelta: 0.0000000001, longitudeDelta: 0.0000000001)
-            let region1 = MKCoordinateRegion(center: points[0], span: span)
-            self.mapView.setRegion(region1, animated: true)
+            let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+            let region = MKCoordinateRegion(center: points[0], span: span)
+            self.mapView.setRegion(region, animated: true)
         })
     }
     
@@ -229,5 +244,9 @@ extension MapVC: MKMapViewDelegate {
             return polylineRenderer
         }
         return MKPolylineRenderer(overlay: overlay)
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        mapView.setUserTrackingMode(.follow, animated: true)
     }
 } // End of MapVC Delegate

@@ -23,10 +23,21 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         infoMapMgr?.delegate = self
         infoMap.delegate = self
         infoMap.showsUserLocation = true
+        infoMap.showsCompass = false        //remove default compass
+        infoMap.showsPointsOfInterest = false
         self.navigationItem.title = viewTitle
         
-        infoMap.showsCompass = false        //remove default compass
-        //creating new compass
+        //Creating location tracking button
+        let buttonItem = MKUserTrackingButton(mapView: infoMap)
+        infoMap.addSubview(buttonItem)
+        buttonItem.translatesAutoresizingMaskIntoConstraints = false
+        buttonItem.trailingAnchor.constraint(equalTo: infoMap.trailingAnchor, constant: -12).isActive = true
+        buttonItem.topAnchor.constraint(equalTo: infoMap.topAnchor, constant: 55).isActive = true
+        buttonItem.backgroundColor = UIColor.black
+        buttonItem.layer.cornerRadius = buttonItem.frame.width/8.0
+        buttonItem.layer.masksToBounds = true
+        
+        //creating new compass button
         let compassButton = MKCompassButton(mapView: infoMap)
         compassButton.compassVisibility = .visible
         infoMap.addSubview(compassButton)
@@ -39,6 +50,18 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         } else {
             infoMapMgr!.requestWhenInUseAuthorization()
         }
+        
+        //Mask for rounded corners on timer label
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = self.TimerLabel.frame
+        rectShape.position = self.TimerLabel.center
+        rectShape.path = UIBezierPath(roundedRect: self.TimerLabel.bounds, byRoundingCorners: [.bottomLeft , .bottomRight], cornerRadii: CGSize(width: 10, height: 10)).cgPath
+
+         self.TimerLabel.layer.backgroundColor = UIColor.green.cgColor
+        //Here I'm masking the textView's layer with rectShape layer
+         self.TimerLabel.layer.mask = rectShape
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,12 +92,15 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     }
     
     // MARK: didUpdateLocations
+    var isFirstUpdate = true
     var regionRadius: Double = 100
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-        let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-        regionRadius = 100
-        centerMapOnLocation(location: initialLocation)
+        if isFirstUpdate {
+            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+            let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+            centerMapOnLocation(location: initialLocation)
+            isFirstUpdate = false
+        }
     }
     
     // MARK: centerMapOnLocation
@@ -82,6 +108,47 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
                                                   latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
       infoMap.setRegion(coordinateRegion, animated: true)
+    }
+    
+
+    // MARK: lapTimer
+    var seconds: Float = 00.00
+    var minutes: Int = 0
+    var timer = Timer()
+    var isTiming = false
+    @IBOutlet weak var StartStopTimerAttrs: UIButton!
+    @IBAction func StartStopTimer(_ sender: Any) {
+        if isTiming {
+            isTiming = false
+            StartStopTimerAttrs.backgroundColor = UIColor.systemGreen
+            StartStopTimerAttrs.setTitle("Start Timer", for: .normal)
+            timer.invalidate()
+        }
+        else {
+            isTiming = true
+            StartStopTimerAttrs.backgroundColor = UIColor.red
+            StartStopTimerAttrs.setTitle("Stop Timer", for: .normal)
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+        }
+    }
+    
+    // MARK: lapTimer Stop/Start Func and Attrs
+    @IBOutlet weak var TimerLabel: UILabel!
+    @objc func UpdateTimer() {
+        seconds += 0.01
+        if seconds >= 60 {
+            minutes += 1
+            seconds = 00.00
+        }
+        var min: String = String(minutes)
+        var sec: String = String(format: "%.2f", seconds)
+        if minutes < 10 {
+            min = "0\(min)"
+        }
+        if seconds < 10 {
+            sec = "0\(sec)"
+        }
+        TimerLabel.text = "\(min):\(sec)" //String(format: "%.2f", seconds)
     }
 
     /*
@@ -95,6 +162,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     */
 }
 
+// MARK: MapView Delegate
 extension SavedCourseInfo: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
@@ -104,5 +172,9 @@ extension SavedCourseInfo: MKMapViewDelegate {
             return polylineRenderer
         }
         return MKPolylineRenderer(overlay: overlay)
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        mapView.setUserTrackingMode(.followWithHeading, animated: true)
     }
 } // End of MapVC Delegate
