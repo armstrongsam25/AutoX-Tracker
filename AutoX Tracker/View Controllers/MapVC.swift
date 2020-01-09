@@ -21,8 +21,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: CLASS VARIABLES
     @IBOutlet weak var mapView: MKMapView!  // Linking MapView
     var locationMgr: CLLocationManager?
-    //var initialLocation: CLLocation
-    var regionRadius: CLLocationDistance = 100
+    var regionRadius: CLLocationDistance = 15
     var didAllowLocation: Bool?
     
     // MARK: viewDidLoad()
@@ -30,7 +29,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
-        mapView.delegate = self
+        locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
+        self.mapView.delegate = self
         mapView.showsUserLocation = true    //Add user location
         mapView.showsCompass = false        //remove default compass
         mapView.showsPointsOfInterest = false
@@ -44,7 +44,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         trackingBtn.backgroundColor = UIColor.black
         trackingBtn.layer.cornerRadius = trackingBtn.frame.width/8.0
         trackingBtn.layer.masksToBounds = true
-//        mapView.setUserTrackingMode(.followWithHeading, animated: true)
         
         //creating new compass button
         let compassButton = MKCompassButton(mapView: mapView)
@@ -151,10 +150,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         if isTracking {
             capturedTracks.append(locations)
         }
-        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-        let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
         if isFirstUpdate {
-            centerMapOnLocation(location: initialLocation)
+//            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+//            let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+//            centerMapOnLocation(location: initialLocation)
             isFirstUpdate = false
         }
     }
@@ -179,8 +178,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         geodesic = MKGeodesicPolyline(coordinates: points, count: points.count)
         mapView.addOverlay(geodesic)
 
-        UIView.animate(withDuration: 1.5, animations: { () -> Void in
-            let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
             let region = MKCoordinateRegion(center: points[0], span: span)
             self.mapView.setRegion(region, animated: true)
         })
@@ -202,7 +201,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             let textField = alert?.textFields![0]
             // Call trackmodel here
             if textField!.text! == "" {
-                
                 textField!.text = "Course #\(courseCount)"
             }
             let currentTrack = TrackModel(title: textField!.text!, lat: latitudeForTracks, lon: longitudeForTracks)
@@ -246,7 +244,8 @@ extension MapVC: MKMapViewDelegate {
         return MKPolylineRenderer(overlay: overlay)
     }
     
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+    override func viewWillAppear(_ animated: Bool) {
+        // setting zoom
         mapView.setUserTrackingMode(.follow, animated: true)
     }
 } // End of MapVC Delegate

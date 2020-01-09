@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import MapKit
 
 class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
@@ -15,12 +16,14 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     var savedLats: [Double] = []
     var savedLons: [Double] = []
     var viewTitle: String = ""
+    var regionRadius: Double = 15
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createInfoPolyline(mapView: infoMap)
         infoMapMgr = CLLocationManager()
         infoMapMgr?.delegate = self
+        infoMapMgr?.desiredAccuracy = kCLLocationAccuracyBest
         infoMap.delegate = self
         infoMap.showsUserLocation = true
         infoMap.showsCompass = false        //remove default compass
@@ -58,15 +61,12 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         rectShape.path = UIBezierPath(roundedRect: self.TimerLabel.bounds, byRoundingCorners: [.bottomLeft , .bottomRight], cornerRadii: CGSize(width: 10, height: 10)).cgPath
 
          self.TimerLabel.layer.backgroundColor = UIColor.green.cgColor
-        //Here I'm masking the textView's layer with rectShape layer
          self.TimerLabel.layer.mask = rectShape
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         infoMap.removeOverlay(self.geodesic)
-        infoMapMgr!.stopUpdatingLocation()
+        //infoMapMgr!.stopUpdatingLocation()
     }
     
     // MARK: createInfoPolyline
@@ -80,25 +80,24 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
             points.append(point)
             index += 1
         }
-        
         geodesic = MKGeodesicPolyline(coordinates: points, count: points.count)
         mapView.addOverlay(geodesic)
 
+        // This makes the zoom level right
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
-            let span = MKCoordinateSpan(latitudeDelta: 0.0000000001, longitudeDelta: 0.0000000001)
-            let region1 = MKCoordinateRegion(center: points[0], span: span)
-            mapView.setRegion(region1, animated: true)
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            let region = MKCoordinateRegion(center: points[0], span: span)
+            mapView.setRegion(region, animated: true)
         })
     }
     
     // MARK: didUpdateLocations
     var isFirstUpdate = true
-    var regionRadius: Double = 100
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if isFirstUpdate {
-            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-            let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-            centerMapOnLocation(location: initialLocation)
+            //let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+            //let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+            //centerMapOnLocation(location: initialLocation)
             isFirstUpdate = false
         }
     }
@@ -148,7 +147,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         if seconds < 10 {
             sec = "0\(sec)"
         }
-        TimerLabel.text = "\(min):\(sec)" //String(format: "%.2f", seconds)
+        TimerLabel.text = "\(min):\(sec)"
     }
 
     /*
@@ -174,7 +173,26 @@ extension SavedCourseInfo: MKMapViewDelegate {
         return MKPolylineRenderer(overlay: overlay)
     }
     
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        mapView.setUserTrackingMode(.followWithHeading, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        // setting zoom
+        let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+        let location = CLLocationCoordinate2D(latitude: infoMap.userLocation.coordinate.latitude, longitude: infoMap.userLocation.coordinate.longitude)
+        let coordinateRegion = MKCoordinateRegion(center: location, span: span)
+        infoMap.setRegion(coordinateRegion, animated: true)
+        infoMap.setUserTrackingMode(.followWithHeading, animated: true)
+        
+        //setting start and finish
+            let start = MKPointAnnotation()
+            start.coordinate = CLLocationCoordinate2DMake(savedLats[0], savedLons[0])
+            start.title = "Start"
+            start.subtitle = "Start Line"
+            
+            let end = MKPointAnnotation()
+            end.coordinate = CLLocationCoordinate2DMake(savedLats[savedLats.count-1], savedLons[savedLons.count-1])
+            end.title = "Finish"
+            end.subtitle = "Finish Line"
+
+            infoMap.addAnnotation(start)
+            infoMap.addAnnotation(end)
     }
 } // End of MapVC Delegate
