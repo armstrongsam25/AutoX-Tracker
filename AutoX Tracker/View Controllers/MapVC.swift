@@ -75,8 +75,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         } else {
             locationMgr!.requestWhenInUseAuthorization()
         }
-        
     }
+    
     
     // MARK: didChangeAuthorization
     //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
@@ -109,12 +109,14 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    
     // MARK: centerMapOnLocation
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
                                                   latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
       mapView.setRegion(coordinateRegion, animated: true)
     }
+    
     
     // MARK: CONNECTING BUTTONS (Presses, Attributes)
     @IBOutlet weak var TrackingButtonAttrs: UIButton!
@@ -126,6 +128,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             locationMgr?.distanceFilter = 1
             TrackingButtonAttrs.backgroundColor = UIColor.red
             TrackingButtonAttrs.setTitle("Stop Tracking", for: .normal)
+            //centerMapOnLocation(location: (locationMgr?.location)!)
+            mapView.setUserTrackingMode(.follow, animated: true)
         }
         else if isTracking == true {
             isTracking = false
@@ -158,6 +162,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    
     // MARK: createPolyline()
     var geodesic = MKGeodesicPolyline()
     func createPolyline(mapView: MKMapView) {
@@ -184,6 +189,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             self.mapView.setRegion(region, animated: true)
         })
     }
+    
     
     // MARK: saveTheTrack() 
     func saveTheTrack(){
@@ -231,6 +237,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         navigationItem.backBarButtonItem = backItem
     }
 } // End of MapVC Class
+
 
 // MARK: MapVC Delegate
 extension MapVC: MKMapViewDelegate {

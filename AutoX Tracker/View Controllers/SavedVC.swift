@@ -60,7 +60,10 @@ class SavedVC: UITableViewController {
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        let temp: TrackModel = savedTracks[fromIndexPath.row]
+        savedTracks[fromIndexPath.row] = savedTracks[to.row]
+        savedTracks[to.row] = temp
+        saveToUserDefaults(tracks: savedTracks)
     }
     
     // Override to support conditional rearranging of the table view.
