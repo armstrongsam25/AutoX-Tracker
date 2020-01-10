@@ -221,7 +221,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yf7-UR-ZDP" firstAttribute="bottom" secondItem="67c-cP-DYc" secondAttribute="bottom" id="1t9-Ja-Ijq"/>
-                            <constraint firstItem="yf7-UR-ZDP" firstAttribute="leading" secondItem="67c-cP-DYc" secondAttribute="leading" id="KEW-hL-g9y"/>
+                            <constraint firstItem="yf7-UR-ZDP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="67c-cP-DYc" secondAttribute="leading" id="KEW-hL-g9y"/>
                             <constraint firstItem="DkR-Eo-S6z" firstAttribute="trailing" secondItem="67c-cP-DYc" secondAttribute="trailing" id="LMw-1r-ynA"/>
                             <constraint firstItem="DkR-Eo-S6z" firstAttribute="bottom" secondItem="67c-cP-DYc" secondAttribute="bottom" id="LUt-fi-Wuh"/>
                             <constraint firstItem="67c-cP-DYc" firstAttribute="leading" secondItem="DkR-Eo-S6z" secondAttribute="leading" id="R7W-3X-wg0"/>
@@ -233,7 +233,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DkR-Eo-S6z"/>
                     </view>
-                    <navigationItem key="navigationItem" id="uhB-TL-Je8"/>
+                    <navigationItem key="navigationItem" id="uhB-TL-Je8">
+                        <barButtonItem key="rightBarButtonItem" id="DT1-fc-xYb">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JSu-ww-IdA">
+                                <rect key="frame" x="276" y="3.5" width="83" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                <state key="normal" title="Times"/>
+                                <connections>
+                                    <segue destination="foC-Id-Qx6" kind="show" identifier="toTimes" id="0Ti-sB-08z"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="StartStopTimerAttrs" destination="yf7-UR-ZDP" id="zMa-pP-xxl"/>
                         <outlet property="TimerLabel" destination="udY-pd-Gpf" id="8hE-rQ-fPw"/>
@@ -311,6 +323,52 @@
                 <exit id="Lv4-pr-Q65" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="342" y="-308"/>
+        </scene>
+        <!--timesVC-->
+        <scene sceneID="6aW-rI-uMh">
+            <objects>
+                <tableViewController title="timesVC" id="foC-Id-Qx6" customClass="TimesVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8bV-NP-kfe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lapTimes" rowHeight="57" id="NeT-HG-g48" customClass="TimesCell" customModule="AutoX_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="57"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NeT-HG-g48" id="Wel-0H-38g">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJp-l0-M58">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="57"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cJp-l0-M58" firstAttribute="top" secondItem="Wel-0H-38g" secondAttribute="top" id="8Md-ZG-GBb"/>
+                                        <constraint firstAttribute="trailing" secondItem="cJp-l0-M58" secondAttribute="trailing" constant="16" id="I2x-CL-s1k"/>
+                                        <constraint firstItem="cJp-l0-M58" firstAttribute="leading" secondItem="Wel-0H-38g" secondAttribute="leading" constant="16" id="M7Z-4q-fcx"/>
+                                        <constraint firstAttribute="bottom" secondItem="cJp-l0-M58" secondAttribute="bottom" id="YSj-vf-2Dh"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lapTime" destination="cJp-l0-M58" id="gpF-68-v5U"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="foC-Id-Qx6" id="A0H-9N-6yv"/>
+                            <outlet property="delegate" destination="foC-Id-Qx6" id="n2u-0j-jix"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Yvt-OH-Gpe"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wjb-nI-WaL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2269.5999999999999" y="412.44377811094455"/>
         </scene>
     </scenes>
     <resources>

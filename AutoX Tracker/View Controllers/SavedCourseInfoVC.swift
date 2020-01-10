@@ -17,6 +17,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     var savedLons: [Double] = []
     var viewTitle: String = ""
     var regionRadius: Double = 15
+    var indexOfCourse: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,9 +112,10 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     
 
     // MARK: lapTimer
-    var seconds: Float = 00.00
+    var seconds: Float = 0.0
     var minutes: Int = 0
     var timer = Timer()
+    var theTime: String = ""
     var isTiming = false
     @IBOutlet weak var StartStopTimerAttrs: UIButton!
     @IBAction func StartStopTimer(_ sender: Any) {
@@ -122,8 +124,13 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
             StartStopTimerAttrs.backgroundColor = UIColor.systemGreen
             StartStopTimerAttrs.setTitle("Start Timer", for: .normal)
             timer.invalidate()
+            theTime = TimerLabel.text!
+            savedTimes[indexOfCourse].append(theTime)
+            saveTimesToUserDefaults(times: savedTimes)
         }
         else {
+            seconds = 00.00
+            minutes = 0
             isTiming = true
             StartStopTimerAttrs.backgroundColor = UIColor.red
             StartStopTimerAttrs.setTitle("Stop Timer", for: .normal)
@@ -150,15 +157,18 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         TimerLabel.text = "\(min):\(sec)"
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toTimes" {
+            let controller = segue.destination as! TimesVC
+            controller.indexOfCourse = indexOfCourse
+        }
     }
-    */
 }
 
 // MARK: MapView Delegate

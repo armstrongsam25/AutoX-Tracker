@@ -19,6 +19,7 @@ var window: UIWindow?
         // Override point for customization after application launch.
         //removeAllUserDefaults();
         loadFromUserDefaults()
+        loadTimesFromUserDefaults()
         return true
     }
 
@@ -98,6 +99,16 @@ func saveToUserDefaults(tracks: [TrackModel]) {
     UserDefaults.standard.set(index, forKey: "count")
 }
 
+// MARK: saveTimesToUserDefaults
+func saveTimesToUserDefaults(times: [[String]]){
+    var index: Int = 0
+    while index < times.count {
+        UserDefaults.standard.set(times[index], forKey: "timesForCourse\(index)")
+        index += 1
+    }
+    UserDefaults.standard.set(index, forKey: "timeCount")
+}
+
 // MARK: loadFromUserDefaults
 func loadFromUserDefaults() {
     let count: Int = UserDefaults.standard.integer(forKey: "count")
@@ -115,6 +126,19 @@ func loadFromUserDefaults() {
     }
 }
 
+// MARK: loadTimesFromUserDefaults()
+func loadTimesFromUserDefaults() {
+    let count: Int = UserDefaults.standard.integer(forKey: "timeCount")
+    if count != 0 {
+        var index: Int = 0
+        while index < count {
+            let timesForCourse = UserDefaults.standard.array(forKey: "timesForCourse\(index)") as? [String] ?? [String]()
+            savedTimes.append(timesForCourse)
+            index += 1
+        }
+    }
+}
+
 // MARK: removeAllUserDefaults
 func removeAllUserDefaults() {
     let count: Int = UserDefaults.standard.integer(forKey: "count")
@@ -124,6 +148,17 @@ func removeAllUserDefaults() {
         UserDefaults.standard.removeObject(forKey: "date\(index)")
         UserDefaults.standard.removeObject(forKey: "lat\(index)")
         UserDefaults.standard.removeObject(forKey: "lon\(index)")
+        index += 1
+    }
+    UserDefaults.standard.set(0, forKey: "count")
+    UserDefaults.standard.synchronize()
+}
+
+func removeAllTimeDefaults() {
+    let count: Int = UserDefaults.standard.integer(forKey: "timeCount")
+    var index: Int = 0
+    while index <= count {
+        UserDefaults.standard.removeObject(forKey: "timesForCourse\(index)")
         index += 1
     }
     UserDefaults.standard.set(0, forKey: "count")
