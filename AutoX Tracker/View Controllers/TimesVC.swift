@@ -59,9 +59,9 @@ class TimesVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
             savedTimes[indexOfCourse].remove(at: indexPath.row)
             saveTimesToUserDefaults(times: savedTimes)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
         
     }
