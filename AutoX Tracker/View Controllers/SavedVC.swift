@@ -56,6 +56,7 @@ class SavedVC: UITableViewController {
             // Delete the row from the data source
             savedTracks.remove(at: indexPath.row)
             saveToUserDefaults(tracks: savedTracks)
+            savedTimes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -66,6 +67,11 @@ class SavedVC: UITableViewController {
         savedTracks[fromIndexPath.row] = savedTracks[to.row]
         savedTracks[to.row] = temp
         saveToUserDefaults(tracks: savedTracks)
+        
+        let timeTemp: [String] = savedTimes[fromIndexPath.row]
+        savedTimes[fromIndexPath.row] = savedTimes[to.row]
+        savedTimes[to.row] = timeTemp
+        saveTimesToUserDefaults(times: savedTimes)
     }
     
     // Override to support conditional rearranging of the table view.

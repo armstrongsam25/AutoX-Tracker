@@ -364,7 +364,7 @@
                             <outlet property="delegate" destination="foC-Id-Qx6" id="n2u-0j-jix"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Yvt-OH-Gpe"/>
+                    <navigationItem key="navigationItem" title="Times" id="Yvt-OH-Gpe"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wjb-nI-WaL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

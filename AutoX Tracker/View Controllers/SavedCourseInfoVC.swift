@@ -164,6 +164,10 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        backItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
+        navigationItem.backBarButtonItem = backItem
         if segue.identifier == "toTimes" {
             let controller = segue.destination as! TimesVC
             controller.indexOfCourse = indexOfCourse

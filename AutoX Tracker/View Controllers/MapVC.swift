@@ -207,6 +207,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             }
             let currentTrack = TrackModel(title: textField!.text!, lat: latitudeForTracks, lon: longitudeForTracks)
             savedTracks.append(currentTrack)
+            savedTimes.append([])
             saveToUserDefaults(tracks: savedTracks)
             self.mapView.removeOverlay(self.geodesic)
             capturedTracks.removeAll()
