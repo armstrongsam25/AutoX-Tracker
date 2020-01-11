@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: Global Variables
 var savedTimes: [[String]] = [[]]
 
 class TimesVC: UITableViewController {
@@ -15,6 +16,7 @@ class TimesVC: UITableViewController {
     
     @IBOutlet weak var timeLabel: UILabel!
     
+    // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -24,8 +26,6 @@ class TimesVC: UITableViewController {
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
-        //savedTimes.remove(at: 0)
-        //saveTimesToUserDefaults(times: savedTimes)
         print(savedTimes)
     }
 
@@ -97,6 +97,7 @@ class TimesVC: UITableViewController {
 
 }
 
+// MARK: Custom Tableview Cell
 class TimesCell: UITableViewCell {
     @IBOutlet weak var lapTime: UILabel!
 }

@@ -84,7 +84,7 @@ var window: UIWindow?
     }
 }
 
-// MARK: GLOBAL FUNCTIONS
+// MARK: - GLOBAL FUNCTIONS
 
 // MARK: saveToUserDefaults
 func saveToUserDefaults(tracks: [TrackModel]) {
@@ -154,6 +154,7 @@ func removeAllUserDefaults() {
     UserDefaults.standard.synchronize()
 }
 
+// MARK: removeAllTimeDefaults()
 func removeAllTimeDefaults() {
     let count: Int = UserDefaults.standard.integer(forKey: "timeCount")
     var index: Int = 0

@@ -9,14 +9,9 @@
 import UIKit
 
 class SavedVC: UITableViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // Adding button and button style to edit button for tableview
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
@@ -102,6 +97,7 @@ class SavedVC: UITableViewController {
     }
 }
 
+// Custom Tableview Cell
 class SavedCell: UITableViewCell {
     @IBOutlet weak var textLabel1: UILabel!
     @IBOutlet weak var textLabel2: UILabel!

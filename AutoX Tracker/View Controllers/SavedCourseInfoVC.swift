@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 
 class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
+    //MARK: Declaring Class Variables
     @IBOutlet weak var infoMap: MKMapView!
     var infoMapMgr: CLLocationManager?
     var savedLats: [Double] = []
@@ -19,6 +20,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     var regionRadius: Double = 15
     var indexOfCourse: Int = -1
     
+    // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         createInfoPolyline(mapView: infoMap)
@@ -65,10 +67,13 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
          self.TimerLabel.layer.mask = rectShape
     }
     
+    
+    // MARK: viewWillDisappear()
     override func viewWillDisappear(_ animated: Bool) {
         infoMap.removeOverlay(self.geodesic)
         //infoMapMgr!.stopUpdatingLocation()
     }
+    
     
     // MARK: createInfoPolyline
     var geodesic = MKGeodesicPolyline()
@@ -92,6 +97,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         })
     }
     
+    
     // MARK: didUpdateLocations
     var isFirstUpdate = true
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -102,6 +108,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
             isFirstUpdate = false
         }
     }
+    
     
     // MARK: centerMapOnLocation
     func centerMapOnLocation(location: CLLocation) {
@@ -137,6 +144,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
         }
     }
+    
     
     // MARK: lapTimer Stop/Start Func and Attrs
     @IBOutlet weak var TimerLabel: UILabel!
@@ -175,6 +183,8 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     }
 }
 
+
+
 // MARK: MapView Delegate
 extension SavedCourseInfo: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -187,6 +197,8 @@ extension SavedCourseInfo: MKMapViewDelegate {
         return MKPolylineRenderer(overlay: overlay)
     }
     
+    
+    // MARK: viewWillAppear()
     override func viewWillAppear(_ animated: Bool) {
         // setting zoom
         let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
@@ -209,4 +221,4 @@ extension SavedCourseInfo: MKMapViewDelegate {
             infoMap.addAnnotation(start)
             infoMap.addAnnotation(end)
     }
-} // End of MapVC Delegate
+} // End of SavedCourseInfo Delegate
