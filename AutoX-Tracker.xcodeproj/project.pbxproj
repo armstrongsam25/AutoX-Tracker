@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		222BBA4F23C872A60015C725 /* TimesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BBA4E23C872A60015C725 /* TimesVC.swift */; };
 		2253F10923BB172B00AF3F82 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253F10823BB172B00AF3F82 /* NavigationVC.swift */; };
 		22A07BD223BB25EF0007DA99 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A07BD123BB25EF0007DA99 /* SavedVC.swift */; };
 		22AE17E623BBCF5C00247A08 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE17E523BBCF5C00247A08 /* TrackModel.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		222BBA4E23C872A60015C725 /* TimesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesVC.swift; sourceTree = "<group>"; };
 		2253F10823BB172B00AF3F82 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 		22A07BD123BB25EF0007DA99 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 		22AE17E523BBCF5C00247A08 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				2253F10823BB172B00AF3F82 /* NavigationVC.swift */,
 				22A07BD123BB25EF0007DA99 /* SavedVC.swift */,
 				22EB334723C2BC65001B0409 /* SavedCourseInfoVC.swift */,
+				222BBA4E23C872A60015C725 /* TimesVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				22EBD3B823B71C3C003E0E9E /* AppDelegate.swift in Sources */,
 				22AE17E623BBCF5C00247A08 /* TrackModel.swift in Sources */,
 				22EBD3C223B71C3C003E0E9E /* AutoX_Tracker.xcdatamodeld in Sources */,
+				222BBA4F23C872A60015C725 /* TimesVC.swift in Sources */,
 				22EBD3BA23B71C3C003E0E9E /* SceneDelegate.swift in Sources */,
 				22A07BD223BB25EF0007DA99 /* SavedVC.swift in Sources */,
 				2253F10923BB172B00AF3F82 /* NavigationVC.swift in Sources */,
@@ -338,6 +342,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AutoX Tracker icons";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZSMMKYL58;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = "AutoX Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -357,6 +362,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AutoX Tracker icons";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZSMMKYL58;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = "AutoX Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (

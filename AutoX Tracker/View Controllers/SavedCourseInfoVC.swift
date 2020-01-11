@@ -11,13 +11,16 @@ import CoreLocation
 import MapKit
 
 class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
+    //MARK: Declaring Class Variables
     @IBOutlet weak var infoMap: MKMapView!
     var infoMapMgr: CLLocationManager?
     var savedLats: [Double] = []
     var savedLons: [Double] = []
     var viewTitle: String = ""
     var regionRadius: Double = 15
+    var indexOfCourse: Int = -1
     
+    // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         createInfoPolyline(mapView: infoMap)
@@ -64,10 +67,13 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
          self.TimerLabel.layer.mask = rectShape
     }
     
+    
+    // MARK: viewWillDisappear()
     override func viewWillDisappear(_ animated: Bool) {
         infoMap.removeOverlay(self.geodesic)
         //infoMapMgr!.stopUpdatingLocation()
     }
+    
     
     // MARK: createInfoPolyline
     var geodesic = MKGeodesicPolyline()
@@ -91,6 +97,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         })
     }
     
+    
     // MARK: didUpdateLocations
     var isFirstUpdate = true
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -102,6 +109,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    
     // MARK: centerMapOnLocation
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
@@ -111,9 +119,10 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     
 
     // MARK: lapTimer
-    var seconds: Float = 00.00
+    var seconds: Float = 0.0
     var minutes: Int = 0
     var timer = Timer()
+    var theTime: String = ""
     var isTiming = false
     @IBOutlet weak var StartStopTimerAttrs: UIButton!
     @IBAction func StartStopTimer(_ sender: Any) {
@@ -122,14 +131,20 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
             StartStopTimerAttrs.backgroundColor = UIColor.systemGreen
             StartStopTimerAttrs.setTitle("Start Timer", for: .normal)
             timer.invalidate()
+            theTime = TimerLabel.text!
+            savedTimes[indexOfCourse].append(theTime)
+            saveTimesToUserDefaults(times: savedTimes)
         }
         else {
+            seconds = 00.00
+            minutes = 0
             isTiming = true
             StartStopTimerAttrs.backgroundColor = UIColor.red
             StartStopTimerAttrs.setTitle("Stop Timer", for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
         }
     }
+    
     
     // MARK: lapTimer Stop/Start Func and Attrs
     @IBOutlet weak var TimerLabel: UILabel!
@@ -150,16 +165,25 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         TimerLabel.text = "\(min):\(sec)"
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        backItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
+        navigationItem.backBarButtonItem = backItem
+        if segue.identifier == "toTimes" {
+            let controller = segue.destination as! TimesVC
+            controller.indexOfCourse = indexOfCourse
+        }
     }
-    */
 }
+
+
 
 // MARK: MapView Delegate
 extension SavedCourseInfo: MKMapViewDelegate {
@@ -173,6 +197,8 @@ extension SavedCourseInfo: MKMapViewDelegate {
         return MKPolylineRenderer(overlay: overlay)
     }
     
+    
+    // MARK: viewWillAppear()
     override func viewWillAppear(_ animated: Bool) {
         // setting zoom
         let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
@@ -195,4 +221,4 @@ extension SavedCourseInfo: MKMapViewDelegate {
             infoMap.addAnnotation(start)
             infoMap.addAnnotation(end)
     }
-} // End of MapVC Delegate
+} // End of SavedCourseInfo Delegate

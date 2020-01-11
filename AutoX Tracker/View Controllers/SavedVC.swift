@@ -9,15 +9,12 @@
 import UIKit
 
 class SavedVC: UITableViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // Adding button and button style to edit button for tableview
+        let editButton = self.editButtonItem
+        editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
+        self.navigationItem.rightBarButtonItem = editButton
     }
 
     // MARK: - Table view data source
@@ -54,6 +51,7 @@ class SavedVC: UITableViewController {
             // Delete the row from the data source
             savedTracks.remove(at: indexPath.row)
             saveToUserDefaults(tracks: savedTracks)
+            savedTimes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -64,6 +62,11 @@ class SavedVC: UITableViewController {
         savedTracks[fromIndexPath.row] = savedTracks[to.row]
         savedTracks[to.row] = temp
         saveToUserDefaults(tracks: savedTracks)
+        
+        let timeTemp: [String] = savedTimes[fromIndexPath.row]
+        savedTimes[fromIndexPath.row] = savedTimes[to.row]
+        savedTimes[to.row] = timeTemp
+        saveTimesToUserDefaults(times: savedTimes)
     }
     
     // Override to support conditional rearranging of the table view.
@@ -78,17 +81,23 @@ class SavedVC: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        backItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
+        navigationItem.backBarButtonItem = backItem
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = segue.destination as! SavedCourseInfo
                 controller.savedLats = savedTracks[indexPath.row].latArray
                 controller.savedLons = savedTracks[indexPath.row].lonArray
                 controller.viewTitle = savedTracks[indexPath.row].title
+                controller.indexOfCourse = indexPath.row
             }
         }
     }
 }
 
+// Custom Tableview Cell
 class SavedCell: UITableViewCell {
     @IBOutlet weak var textLabel1: UILabel!
     @IBOutlet weak var textLabel2: UILabel!

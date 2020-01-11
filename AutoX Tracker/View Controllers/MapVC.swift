@@ -194,15 +194,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: saveTheTrack() 
     func saveTheTrack(){
         let courseCount = savedTracks.count + 1
-        //present alert with text box
         //Save or Discard options
         let alert = UIAlertController(title: "Save Your Course", message: "Enter a name for your course.", preferredStyle: .alert)
-
-        //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
             textField.placeholder = "Course #\(courseCount)"
         }
-
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             // Call trackmodel here
@@ -211,6 +207,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             }
             let currentTrack = TrackModel(title: textField!.text!, lat: latitudeForTracks, lon: longitudeForTracks)
             savedTracks.append(currentTrack)
+            savedTimes.append([])
             saveToUserDefaults(tracks: savedTracks)
             self.mapView.removeOverlay(self.geodesic)
             capturedTracks.removeAll()
@@ -224,16 +221,14 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             capturedTracks.removeAll()
             coordinantsForTracks.removeAll()
         }))
-
-        // 4. Present the alert.
         self.present(alert, animated: true, completion:  nil)
-        
     }
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
+        backItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         navigationItem.backBarButtonItem = backItem
     }
 } // End of MapVC Class
