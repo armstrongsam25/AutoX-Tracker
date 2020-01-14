@@ -26,14 +26,28 @@ class TimesVC: UITableViewController {
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
-        print(savedTimes)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+       var numOfSections: Int = 0
+        if savedTimes[indexOfCourse].count != 0 {
+            tableView.separatorStyle = .singleLine
+            numOfSections = 1
+            tableView.backgroundView = nil
+        }
+        else {
+            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "No Saved Times.\n Press \"Start Timing\" to start saving."
+            noDataLabel.textColor = UIColor.black
+            noDataLabel.font = UIFont(name: "Futura", size: 19)
+            noDataLabel.textAlignment = .center
+            noDataLabel.numberOfLines = 2
+            tableView.backgroundView = noDataLabel
+            tableView.separatorStyle = .none
+        }
+        return numOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

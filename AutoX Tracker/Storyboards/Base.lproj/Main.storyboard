@@ -102,6 +102,7 @@
                     <connections>
                         <outlet property="TrackingButtonAttrs" destination="jt7-iT-HBO" id="wic-JZ-HEH"/>
                         <outlet property="mapView" destination="KG4-Ls-kTg" id="tnh-eE-erm"/>
+                        <segue destination="vr7-S5-Hup" kind="presentation" identifier="tutorialSegue" modalPresentationStyle="overFullScreen" id="HNE-HO-qF1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4v-0f-Dar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -323,6 +324,128 @@
                 <exit id="Lv4-pr-Q65" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="342" y="-308"/>
+        </scene>
+        <!--TutVC1-->
+        <scene sceneID="9iW-ev-d4X">
+            <objects>
+                <viewController restorationIdentifier="VC1" storyboardIdentifier="VC1" title="TutVC1" id="tUf-bm-UXl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1W6-eO-sGd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="eLM-7J-W2V">
+                                <rect key="frame" x="16" y="20" width="343" height="593"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Welcome to  AutoX Tracker!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJJ-xB-UcM">
+                                        <rect key="frame" x="30" y="8" width="283" height="108"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="108" id="aBD-pE-nKy"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="30"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Ny-hQ-GM3">
+                                        <rect key="frame" x="50" y="124" width="243" height="444"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="9"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bgz-Bg-XjH" firstAttribute="bottom" secondItem="6Ny-hQ-GM3" secondAttribute="bottom" constant="25" id="9eI-4P-74B"/>
+                                    <constraint firstItem="6Ny-hQ-GM3" firstAttribute="leading" secondItem="bgz-Bg-XjH" secondAttribute="leading" constant="50" id="CLl-tJ-5VG"/>
+                                    <constraint firstItem="XJJ-xB-UcM" firstAttribute="leading" secondItem="bgz-Bg-XjH" secondAttribute="leading" constant="30" id="SrT-fx-nEZ"/>
+                                    <constraint firstItem="bgz-Bg-XjH" firstAttribute="trailing" secondItem="6Ny-hQ-GM3" secondAttribute="trailing" constant="50" id="W8p-0P-Emb"/>
+                                    <constraint firstItem="XJJ-xB-UcM" firstAttribute="top" secondItem="bgz-Bg-XjH" secondAttribute="top" constant="8" id="e3N-a5-hoA"/>
+                                    <constraint firstItem="bgz-Bg-XjH" firstAttribute="trailing" secondItem="XJJ-xB-UcM" secondAttribute="trailing" constant="30" id="t21-co-yGg"/>
+                                    <constraint firstItem="6Ny-hQ-GM3" firstAttribute="top" secondItem="XJJ-xB-UcM" secondAttribute="bottom" constant="8" id="wRa-gJ-b2c"/>
+                                    <constraint firstItem="6Ny-hQ-GM3" firstAttribute="top" secondItem="XJJ-xB-UcM" secondAttribute="bottom" constant="8" id="xnq-HC-7Dk"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="bgz-Bg-XjH"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="eyS-lj-cGq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="29F-H7-Rrw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1496.8" y="-308.09595202398805"/>
+        </scene>
+        <!--TutVC2-->
+        <scene sceneID="sfu-fp-Hei">
+            <objects>
+                <viewController restorationIdentifier="VC2" storyboardIdentifier="VC2" title="TutVC2" id="P8g-Xk-Tex" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pWR-wh-2Vz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="mP8-y6-12J">
+                                <rect key="frame" x="16" y="20" width="343" height="593"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <viewLayoutGuide key="safeArea" id="f2o-0p-H4f"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="UR5-AA-WiA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zoZ-8d-nsj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2141.5999999999999" y="-308.09595202398805"/>
+        </scene>
+        <!--TutVC3-->
+        <scene sceneID="Zyc-Lz-82F">
+            <objects>
+                <viewController restorationIdentifier="VC3" storyboardIdentifier="VC3" title="TutVC3" id="lhe-fU-yUS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cmo-vh-k4J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="zj2-JL-YzG">
+                                <rect key="frame" x="16" y="20" width="343" height="593"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <viewLayoutGuide key="safeArea" id="XhJ-sw-zSP"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="1zs-ya-wsH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J8t-2G-Ilr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2782" y="-308"/>
+        </scene>
+        <!--TutorialVC-->
+        <scene sceneID="bfN-Pi-3N4">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vr7-S5-Hup" customClass="TutorialVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rdn-yW-Sf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2144" y="-1044"/>
         </scene>
         <!--timesVC-->
         <scene sceneID="6aW-rI-uMh">

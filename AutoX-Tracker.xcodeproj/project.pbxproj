@@ -11,6 +11,7 @@
 		2253F10923BB172B00AF3F82 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2253F10823BB172B00AF3F82 /* NavigationVC.swift */; };
 		22A07BD223BB25EF0007DA99 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A07BD123BB25EF0007DA99 /* SavedVC.swift */; };
 		22AE17E623BBCF5C00247A08 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE17E523BBCF5C00247A08 /* TrackModel.swift */; };
+		22B8EFD923CA635F00A8ABE6 /* TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8EFD823CA635F00A8ABE6 /* TutorialVC.swift */; };
 		22EB334823C2BC65001B0409 /* SavedCourseInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB334723C2BC65001B0409 /* SavedCourseInfoVC.swift */; };
 		22EBD3B823B71C3C003E0E9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */; };
 		22EBD3BA23B71C3C003E0E9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBD3B923B71C3C003E0E9E /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 		2253F10823BB172B00AF3F82 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 		22A07BD123BB25EF0007DA99 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 		22AE17E523BBCF5C00247A08 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		22B8EFD823CA635F00A8ABE6 /* TutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialVC.swift; sourceTree = "<group>"; };
 		22EB334723C2BC65001B0409 /* SavedCourseInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCourseInfoVC.swift; sourceTree = "<group>"; };
 		22EBD3B423B71C3C003E0E9E /* AutoX Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AutoX Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				22A07BD123BB25EF0007DA99 /* SavedVC.swift */,
 				22EB334723C2BC65001B0409 /* SavedCourseInfoVC.swift */,
 				222BBA4E23C872A60015C725 /* TimesVC.swift */,
+				22B8EFD823CA635F00A8ABE6 /* TutorialVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				222BBA4F23C872A60015C725 /* TimesVC.swift in Sources */,
 				22EBD3BA23B71C3C003E0E9E /* SceneDelegate.swift in Sources */,
 				22A07BD223BB25EF0007DA99 /* SavedVC.swift in Sources */,
+				22B8EFD923CA635F00A8ABE6 /* TutorialVC.swift in Sources */,
 				2253F10923BB172B00AF3F82 /* NavigationVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,7 +20,23 @@ class SavedVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        var numOfSections: Int = 0
+        if savedTracks.count != 0 {
+            tableView.separatorStyle = .singleLine
+            numOfSections = 1
+            tableView.backgroundView = nil
+        }
+        else {
+            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "No Saved Courses.\n Press \"Start Tracking\" to start saving."
+            noDataLabel.textColor = UIColor.black
+            noDataLabel.font = UIFont(name: "Futura", size: 19)
+            noDataLabel.textAlignment = .center
+            noDataLabel.numberOfLines = 2
+            tableView.backgroundView = noDataLabel
+            tableView.separatorStyle = .none
+        }
+        return numOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,6 +68,7 @@ class SavedVC: UITableViewController {
             savedTracks.remove(at: indexPath.row)
             saveToUserDefaults(tracks: savedTracks)
             savedTimes.remove(at: indexPath.row)
+            saveTimesToUserDefaults(times: savedTimes)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
