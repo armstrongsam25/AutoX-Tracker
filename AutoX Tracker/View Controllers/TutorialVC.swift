@@ -2,14 +2,16 @@
 //  TutorialVC.swift
 //  AutoX Tracker
 //
-//  Created by Sam Armstrong on 1/11/20.
+//  Created by Samuel Armstrong on 1/11/20.
 //  Copyright © 2020 Samuel Armstrong. All rights reserved.
 //
 
 import UIKit
 
+// MARK: Pageview Class
 class TutorialVC: UIPageViewController {
     
+    // Getting tutorial VCs
     fileprivate lazy var pages: [UIViewController] = {
             return [
                 self.getViewController(withIdentifier: "VC1"),
@@ -18,44 +20,40 @@ class TutorialVC: UIPageViewController {
             ]
         }()
         
-        fileprivate func getViewController(withIdentifier identifier: String) -> UIViewController
-        {
-            return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
-        }
+    fileprivate func getViewController(withIdentifier identifier: String) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.dataSource = self
+        self.delegate = self
+        let appear = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
+        appear.pageIndicatorTintColor = UIColor.darkGray
+        appear.currentPageIndicatorTintColor = UIColor.red
         
-        override func viewDidLoad()
-        {
-            super.viewDidLoad()
-            self.dataSource = self
-            self.delegate = self
-            let appear = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
-            appear.pageIndicatorTintColor = UIColor.darkGray
-            appear.currentPageIndicatorTintColor = UIColor.red
-            
-            if let firstVC = pages.first
-            {
-                setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
-            }
+        if let firstVC = pages.first {
+            setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
     }
+} //End of Tutorial VC Class
 
-    extension TutorialVC: UIPageViewControllerDataSource
-    {
+// MARK: -Pageview Datasource
+    extension TutorialVC: UIPageViewControllerDataSource {
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
             
             guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
             
             let previousIndex = viewControllerIndex - 1
             
-            guard previousIndex >= 0          else { return pages.last }
+            guard previousIndex >= 0 else { return pages.last }
             
-            guard pages.count > previousIndex else { return nil        }
+            guard pages.count > previousIndex else { return nil }
             
             return pages[previousIndex]
         }
         
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController?
-        {
+        func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
             guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
             
             let nextIndex = viewControllerIndex + 1
@@ -84,4 +82,5 @@ class TutorialVC: UIPageViewController {
         }
     }
 
+//This is necessary
 extension TutorialVC: UIPageViewControllerDelegate { }

@@ -9,11 +9,11 @@
 import UIKit
 
 // MARK: Global Variables
-var savedTimes: [[String]] = [[]]
+var savedTimes: [[String]] = []
 
+// MARK: TimesVC Class
 class TimesVC: UITableViewController {
-    var indexOfCourse: Int = -1
-    
+    var indexOfCourse: Int = -1 // For use with TimesVC
     @IBOutlet weak var timeLabel: UILabel!
     
     // MARK: viewDidLoad()
@@ -22,7 +22,6 @@ class TimesVC: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
@@ -31,10 +30,9 @@ class TimesVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-       var numOfSections: Int = 0
+        print(savedTimes)
         if savedTimes[indexOfCourse].count != 0 {
             tableView.separatorStyle = .singleLine
-            numOfSections = 1
             tableView.backgroundView = nil
         }
         else {
@@ -47,7 +45,7 @@ class TimesVC: UITableViewController {
             tableView.backgroundView = noDataLabel
             tableView.separatorStyle = .none
         }
-        return numOfSections
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,7 +56,7 @@ class TimesVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lapTimes", for: indexPath) as! TimesCell
-        cell.lapTime?.text = "Lap \(indexPath.row + 1): \(savedTimes[indexOfCourse][indexPath.row])"
+        cell.lapTime?.text = "\(savedTimes[indexOfCourse][indexPath.row])"
         return cell
     }
     
@@ -80,14 +78,16 @@ class TimesVC: UITableViewController {
             saveTimesToUserDefaults(times: savedTimes)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        
     }
     
 
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        let temp = savedTimes[indexOfCourse][fromIndexPath.row]
+        savedTimes[indexOfCourse][fromIndexPath.row] = savedTimes[indexOfCourse][to.row]
+        savedTimes[indexOfCourse][to.row] = temp
+        saveTimesToUserDefaults(times: savedTimes)
     }
     
 

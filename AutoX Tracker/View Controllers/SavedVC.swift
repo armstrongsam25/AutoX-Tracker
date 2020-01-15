@@ -15,15 +15,14 @@ class SavedVC: UITableViewController {
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
+        print(savedTracks)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var numOfSections: Int = 0
         if savedTracks.count != 0 {
             tableView.separatorStyle = .singleLine
-            numOfSections = 1
             tableView.backgroundView = nil
         }
         else {
@@ -36,7 +35,7 @@ class SavedVC: UITableViewController {
             tableView.backgroundView = noDataLabel
             tableView.separatorStyle = .none
         }
-        return numOfSections
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,6 +64,7 @@ class SavedVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            // Need to move array of tracks up when a smaller index is deleted
             savedTracks.remove(at: indexPath.row)
             saveToUserDefaults(tracks: savedTracks)
             savedTimes.remove(at: indexPath.row)

@@ -2,7 +2,7 @@
 //  SavedCourseInfo.swift
 //  AutoX Tracker
 //
-//  Created by Sam Armstrong on 1/5/20.
+//  Created by Samuel Armstrong on 1/5/20.
 //  Copyright © 2020 Samuel Armstrong. All rights reserved.
 //
 
@@ -118,7 +118,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     }
     
 
-    // MARK: lapTimer
+    // MARK: -lapTimer
     var seconds: Float = 0.0
     var minutes: Int = 0
     var timer = Timer()
@@ -131,14 +131,14 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
             StartStopTimerAttrs.backgroundColor = UIColor.systemGreen
             StartStopTimerAttrs.setTitle("Start Timer", for: .normal)
             timer.invalidate()
-            theTime = TimerLabel.text!
+            theTime = "Lap \(savedTimes[indexOfCourse].count + 1): \(TimerLabel.text!)"
             savedTimes[indexOfCourse].append(theTime)
             saveTimesToUserDefaults(times: savedTimes)
         }
         else {
+            isTiming = true
             seconds = 00.00
             minutes = 0
-            isTiming = true
             StartStopTimerAttrs.backgroundColor = UIColor.red
             StartStopTimerAttrs.setTitle("Stop Timer", for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
@@ -185,7 +185,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
 
 
 
-// MARK: MapView Delegate
+// MARK: -MapView Delegate
 extension SavedCourseInfo: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
