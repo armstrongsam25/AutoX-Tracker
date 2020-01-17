@@ -15,7 +15,6 @@ class SavedVC: UITableViewController {
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
-        print(savedTracks)
     }
 
     // MARK: - Table view data source

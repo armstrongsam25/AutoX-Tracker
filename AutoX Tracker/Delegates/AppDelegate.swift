@@ -131,19 +131,12 @@ func loadTimesFromUserDefaults() {
     let count: Int = UserDefaults.standard.integer(forKey: "timeCount")
     if count != 0 {
         var index: Int = 0
-        //var indexForEachTime: Int = 0
         while index < count {
             let timesForCourse = UserDefaults.standard.array(forKey: "timesForCourse\(index)") as? [String] ?? [String]()
-            print(timesForCourse)
             savedTimes.append(timesForCourse)
-            /*while indexForEachTime < timesForCourse.count - 1 {
-                savedTimes[index].append(timesForCourse[indexForEachTime])
-                indexForEachTime += 1
-            }*/
             index += 1
         }
     }
-    print(savedTimes)
 }
 
 // MARK: removeAllUserDefaults

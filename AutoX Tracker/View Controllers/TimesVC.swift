@@ -30,7 +30,6 @@ class TimesVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        print(savedTimes)
         if savedTimes[indexOfCourse].count != 0 {
             tableView.separatorStyle = .singleLine
             tableView.backgroundView = nil
