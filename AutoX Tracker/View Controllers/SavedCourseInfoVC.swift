@@ -72,6 +72,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         infoMap.removeOverlay(self.geodesic)
         //infoMapMgr!.stopUpdatingLocation()
+        //infoMapMgr!.stopUpdatingHeading()
     }
     
     

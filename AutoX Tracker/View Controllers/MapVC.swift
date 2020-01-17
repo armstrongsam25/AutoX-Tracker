@@ -79,6 +79,11 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
     
     
+    override func viewWillDisappear(_ animated: Bool) {
+        //locationMgr?.stopUpdatingLocation()
+    }
+    
+    
     // MARK: didChangeAuthorization
     //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
