@@ -60,7 +60,7 @@ class TutorialVC: UIPageViewController {
             
             guard nextIndex < pages.count else { return pages.first }
             
-            guard pages.count > nextIndex else { return nil         }
+            guard pages.count > nextIndex else { return nil }
             
             return pages[nextIndex]
         }
@@ -78,7 +78,7 @@ class TutorialVC: UIPageViewController {
             let appearance = UIPageControl.appearance()
             appearance.pageIndicatorTintColor = UIColor.darkGray
             appearance.currentPageIndicatorTintColor = UIColor.red
-            appearance.backgroundColor = UIColor.white //UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+            appearance.backgroundColor = UIColor.white
         }
     }
 

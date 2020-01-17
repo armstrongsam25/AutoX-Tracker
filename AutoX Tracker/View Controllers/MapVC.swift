@@ -27,7 +27,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
-        //performSegue(withIdentifier: "tutorialSegue", sender: nil)
+        performSegue(withIdentifier: "tutorialSegue", sender: nil)
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
         locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
