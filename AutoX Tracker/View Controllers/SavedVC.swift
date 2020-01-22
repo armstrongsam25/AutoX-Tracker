@@ -12,6 +12,16 @@ class SavedVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Adding button and button style to edit button for tableview
+//        savedTracks[0].dateCreated = "01/12/2019"
+//        savedTracks[1].dateCreated = "02/05/2019"
+//        savedTracks[2].dateCreated = "03/12/2019"
+//        savedTracks[3].dateCreated = "04/08/2019"
+//        savedTracks[4].dateCreated = "05/11/2019"
+//        savedTracks[5].dateCreated = "06/23/2019"
+//        savedTracks[6].dateCreated = "07/14/2019"
+//        savedTracks[7].dateCreated = "08/02/2019"
+//        savedTracks[8].dateCreated = "09/12/2019"
+
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton

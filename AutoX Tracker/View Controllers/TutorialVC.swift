@@ -16,7 +16,8 @@ class TutorialVC: UIPageViewController {
             return [
                 self.getViewController(withIdentifier: "VC1"),
                 self.getViewController(withIdentifier: "VC2"),
-                self.getViewController(withIdentifier: "VC3")
+                self.getViewController(withIdentifier: "VC3"),
+                self.getViewController(withIdentifier: "VC4")
             ]
         }()
         
