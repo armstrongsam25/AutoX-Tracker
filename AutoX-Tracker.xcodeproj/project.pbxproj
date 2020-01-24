@@ -24,7 +24,6 @@
 
 /* Begin PBXFileReference section */
 		222BBA4E23C872A60015C725 /* TimesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesVC.swift; sourceTree = "<group>"; };
-		223AC90723D225CF00AA800B /* output.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = output.gpx; path = ../../output.gpx; sourceTree = "<group>"; };
 		2253F10823BB172B00AF3F82 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 		22A07BD123BB25EF0007DA99 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 		22AE17E523BBCF5C00247A08 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
@@ -94,7 +93,6 @@
 		22EBD3AB23B71C3C003E0E9E = {
 			isa = PBXGroup;
 			children = (
-				223AC90723D225CF00AA800B /* output.gpx */,
 				22EBD3B623B71C3C003E0E9E /* AutoX Tracker */,
 				22EBD3B523B71C3C003E0E9E /* Products */,
 			);

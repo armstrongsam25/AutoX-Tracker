@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: Pageview Class
-class TutorialVC: UIPageViewController {
+class TutorialVC: UIPageViewController, UIPageViewControllerDelegate {
     
     // Getting tutorial VCs
     fileprivate lazy var pages: [UIViewController] = {
@@ -17,7 +17,8 @@ class TutorialVC: UIPageViewController {
                 self.getViewController(withIdentifier: "VC1"),
                 self.getViewController(withIdentifier: "VC2"),
                 self.getViewController(withIdentifier: "VC3"),
-                self.getViewController(withIdentifier: "VC4")
+                self.getViewController(withIdentifier: "VC4"),
+                self.getViewController(withIdentifier: "VC5")
             ]
         }()
         
@@ -32,6 +33,7 @@ class TutorialVC: UIPageViewController {
         let appear = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
         appear.pageIndicatorTintColor = UIColor.darkGray
         appear.currentPageIndicatorTintColor = UIColor.red
+        self.view.backgroundColor = UIColor.white
         
         if let firstVC = pages.first {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
@@ -47,7 +49,7 @@ class TutorialVC: UIPageViewController {
             
             let previousIndex = viewControllerIndex - 1
             
-            guard previousIndex >= 0 else { return pages.last }
+            guard previousIndex >= 0 else { return nil }
             
             guard pages.count > previousIndex else { return nil }
             
@@ -59,7 +61,7 @@ class TutorialVC: UIPageViewController {
             
             let nextIndex = viewControllerIndex + 1
             
-            guard nextIndex < pages.count else { return pages.first }
+            guard nextIndex < pages.count else { return nil }
             
             guard pages.count > nextIndex else { return nil }
             
@@ -82,6 +84,3 @@ class TutorialVC: UIPageViewController {
             appearance.backgroundColor = UIColor.white
         }
     }
-
-//This is necessary
-extension TutorialVC: UIPageViewControllerDelegate { }

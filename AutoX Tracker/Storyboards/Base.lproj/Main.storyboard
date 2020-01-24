@@ -336,7 +336,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YdV-IT-3s0">
                                 <rect key="frame" x="20" y="0.0" width="335" height="667"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Welcome to AutoX Tracker!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4l-8B-n6j">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Welcome to AutoX Tracker!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4l-8B-n6j">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -345,13 +345,8 @@
                                         <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="9"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="This is your main view. Press the &quot;Start Tracking&quot; button to leave a breadcrumb trail as you walk around the course." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnN-mP-qis">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="This is your main view. Press the &quot;Start Tracking&quot; button to leave a breadcrumb trail as you walk around the course." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnN-mP-qis">
                                         <rect key="frame" x="0.0" y="60" width="335" height="75"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -362,18 +357,13 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut1" translatesAutoresizingMaskIntoConstraints="NO" id="oHG-XP-AfD">
-                                        <rect key="frame" x="0.0" y="145" width="335" height="522.00000000000045"/>
+                                        <rect key="frame" x="0.0" y="145" width="335" height="522"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="oHG-XP-AfD" firstAttribute="top" secondItem="XnN-mP-qis" secondAttribute="bottom" constant="10" id="PGt-i5-gff"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="9"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -401,7 +391,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wDW-M1-VVZ">
                                 <rect key="frame" x="20" y="0.0" width="335" height="667"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Welcome to AutoX Tracker!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7N3-z6-BgB">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Saved Courses" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7N3-z6-BgB">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -410,13 +400,8 @@
                                         <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="9"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="This is your Saved Courses. Here you can click to view the course and bring up the race timer." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddS-VR-GMl">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Tap to view the course and bring up the race timer." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddS-VR-GMl">
                                         <rect key="frame" x="0.0" y="60" width="335" height="75"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -431,11 +416,6 @@
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="9"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -463,7 +443,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-N5-iYE">
                                 <rect key="frame" x="20" y="0.0" width="335" height="667"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Welcome to AutoX Tracker!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEK-bP-8d4">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Course View" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEK-bP-8d4">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -472,13 +452,8 @@
                                         <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="9"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="text text text text text text text text text text text text text text text text text text text text " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-pL-xBd">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Track yourself as you run the course. Press the &quot;Start TImer&quot; button to record your lap times." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-pL-xBd">
                                         <rect key="frame" x="0.0" y="60" width="335" height="75"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -489,7 +464,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut3" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-ev-5bZ">
-                                        <rect key="frame" x="0.0" y="145" width="335" height="522.00000000000045"/>
+                                        <rect key="frame" x="0.0" y="145" width="335" height="522"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -498,11 +473,6 @@
                                     <constraint firstItem="5L5-ev-5bZ" firstAttribute="leading" secondItem="1aX-N5-iYE" secondAttribute="leading" id="WSe-xq-Wvx"/>
                                     <constraint firstAttribute="trailing" secondItem="5L5-ev-5bZ" secondAttribute="trailing" id="hy4-JS-jJa"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="9"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -530,22 +500,16 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eW0-bf-Fbb">
                                 <rect key="frame" x="20" y="0.0" width="335" height="667"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Welcome to AutoX Tracker!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzm-fo-EVI">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Lap Times" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzm-fo-EVI">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Frv-OD-4Xh"/>
                                         </constraints>
                                         <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="9"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-8S-Mgo">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Your lap times are saved here for you to manage or view." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-8S-Mgo">
                                         <rect key="frame" x="0.0" y="60" width="335" height="75"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -556,20 +520,14 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut4" translatesAutoresizingMaskIntoConstraints="NO" id="lJL-Ns-Qxc">
-                                        <rect key="frame" x="0.0" y="145" width="335.00000000000023" height="522"/>
+                                        <rect key="frame" x="0.0" y="145" width="335" height="522"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="lJL-Ns-Qxc" secondAttribute="bottom" id="Fbt-Bk-3WP"/>
                                     <constraint firstAttribute="trailing" secondItem="lJL-Ns-Qxc" secondAttribute="trailing" id="HJE-Uk-vrC"/>
                                     <constraint firstItem="lJL-Ns-Qxc" firstAttribute="leading" secondItem="eW0-bf-Fbb" secondAttribute="leading" id="sjt-7S-lro"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="9"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -585,6 +543,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FR-rD-Tfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3422" y="-308"/>
+        </scene>
+        <!--TutVC5-->
+        <scene sceneID="LKL-ey-FZS">
+            <objects>
+                <viewController restorationIdentifier="VC5" storyboardIdentifier="VC5" title="TutVC5" id="8vd-gO-v9X" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J3G-Hq-gPA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jie-Fh-TD4">
+                                <rect key="frame" x="139.5" y="311.5" width="96" height="44"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="24"/>
+                                <state key="normal" title="Let's Go!"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jie-Fh-TD4" firstAttribute="centerY" secondItem="J3G-Hq-gPA" secondAttribute="centerY" id="L4H-GI-cli"/>
+                            <constraint firstItem="jie-Fh-TD4" firstAttribute="centerX" secondItem="J3G-Hq-gPA" secondAttribute="centerX" id="c7b-40-3Zd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HAq-Db-N9G"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zJt-Ak-fIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4065" y="-309"/>
         </scene>
         <!--TutorialVC-->
         <scene sceneID="bfN-Pi-3N4">
