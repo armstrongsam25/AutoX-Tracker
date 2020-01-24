@@ -10,6 +10,11 @@ import UIKit
 
 // MARK: Pageview Class
 class TutorialVC: UIPageViewController, UIPageViewControllerDelegate {
+    @IBAction func dismissTutBtn(_ sender: Any) {
+        print("pressed")
+        self.view.removeFromSuperview()
+        self.removeFromParent()
+    }
     
     // Getting tutorial VCs
     fileprivate lazy var pages: [UIViewController] = {
