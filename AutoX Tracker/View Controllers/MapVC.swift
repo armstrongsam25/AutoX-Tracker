@@ -79,11 +79,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        //locationMgr?.stopUpdatingLocation()
-    }
-    
-    
     // MARK: didChangeAuthorization
     //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -154,17 +149,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     
     // MARK: didUpdateLocations
-    var isFirstUpdate = true
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //append locations to list here
         if isTracking {
             capturedTracks.append(locations)
-        }
-        if isFirstUpdate {
-//            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-//            let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-//            centerMapOnLocation(location: initialLocation)
-            isFirstUpdate = false
         }
     }
     
@@ -207,7 +195,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
-            // Call trackmodel here
             if textField!.text! == "" {
                 textField!.text = "Course #\(courseCount)"
             }

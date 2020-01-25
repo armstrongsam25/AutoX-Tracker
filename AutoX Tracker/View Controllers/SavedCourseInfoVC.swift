@@ -23,17 +23,6 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
-        savedTimes[9].append("Lap 1: 07:13:59")
-        savedTimes[9].append("Lap 2: 07:10:33")
-        savedTimes[9].append("Lap 3: 07:14:05")
-        savedTimes[9].append("Lap 4: 09:21:01")
-        savedTimes[9].append("Lap 5: 07:17:32")
-        savedTimes[9].append("Lap 6: 06:59:30")
-        savedTimes[9].append("Lap 7: 07:32:56")
-        savedTimes[9].append("Lap 8: 07:03:12")
-        savedTimes[9].append("Lap 9: 07:13:43")
-        savedTimes[9].append("Lap 10: 08:12:37")
-        
         createInfoPolyline(mapView: infoMap)
         infoMapMgr = CLLocationManager()
         infoMapMgr?.delegate = self

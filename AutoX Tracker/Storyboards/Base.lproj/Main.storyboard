@@ -268,7 +268,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gMt-kf-4VI">
                                 <rect key="frame" x="0.0" y="206" width="375" height="417"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">This app is designed to help you learn your autocross course by tracking your location as you walk the course. This will create a map of the course for you to view.  To start capturing the course tap the "Start Tracking" button.  Next, walk the course.  Once you are at the finish line, tap the "Stop Tracking" button.  You will now be asked what to name the course. Your course will be automatically saved.  </string>
+                                <mutableString key="text">This app aims to help you learn an autocross course by leaving a breadcrumb trail as you walk the course.   Press the "Tutorial" button in the top right of this screen to learn how to use this app.  If you like the app, please support me by leaving a review on the App Store! 😄</mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
@@ -318,6 +318,14 @@
                                 <action selector="BackButton:" destination="Lv4-pr-Q65" id="Qoe-2V-18g"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="xtm-Zl-nuf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aJX-4q-K0f">
+                                <rect key="frame" x="276" y="3.5" width="83" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                <state key="normal" title="Tutorial"/>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xs8-I7-AOB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -347,17 +355,17 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="This is your main view. Press the &quot;Start Tracking&quot; button to leave a breadcrumb trail as you walk around the course." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnN-mP-qis">
-                                        <rect key="frame" x="0.0" y="60" width="335" height="75"/>
+                                        <rect key="frame" x="0.0" y="60" width="335" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="75" id="WL4-Ld-JOX"/>
+                                            <constraint firstAttribute="height" constant="85" id="WL4-Ld-JOX"/>
                                         </constraints>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut1" translatesAutoresizingMaskIntoConstraints="NO" id="oHG-XP-AfD">
-                                        <rect key="frame" x="0.0" y="145" width="335" height="522"/>
+                                        <rect key="frame" x="0.0" y="155" width="335" height="512.00000000000045"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -402,17 +410,17 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Tap to view the course and bring up the race timer." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddS-VR-GMl">
-                                        <rect key="frame" x="0.0" y="60" width="335" height="75"/>
+                                        <rect key="frame" x="0.0" y="60" width="335" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="75" id="CPS-Zb-bzX"/>
+                                            <constraint firstAttribute="height" constant="85" id="CPS-Zb-bzX"/>
                                         </constraints>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut2" translatesAutoresizingMaskIntoConstraints="NO" id="h11-Jd-2id">
-                                        <rect key="frame" x="0.0" y="145" width="335" height="522"/>
+                                        <rect key="frame" x="0.0" y="155" width="335" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -453,18 +461,18 @@
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Track yourself as you run the course. Press the &quot;Start TImer&quot; button to record your lap times." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-pL-xBd">
-                                        <rect key="frame" x="0.0" y="60" width="335" height="75"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Track yourself as you run the course. Press the &quot;Start Timer&quot; button to record your lap times." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-pL-xBd">
+                                        <rect key="frame" x="0.0" y="60" width="335" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="75" id="xKV-Fe-4mq"/>
+                                            <constraint firstAttribute="height" constant="85" id="xKV-Fe-4mq"/>
                                         </constraints>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut3" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-ev-5bZ">
-                                        <rect key="frame" x="0.0" y="145" width="335" height="522"/>
+                                        <rect key="frame" x="0.0" y="155" width="335" height="512.00000000000045"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -510,17 +518,17 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Your lap times are saved here for you to manage or view." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-8S-Mgo">
-                                        <rect key="frame" x="0.0" y="60" width="335" height="75"/>
+                                        <rect key="frame" x="0.0" y="60" width="335" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="75" id="WXp-YI-kYf"/>
+                                            <constraint firstAttribute="height" constant="85" id="WXp-YI-kYf"/>
                                         </constraints>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut4" translatesAutoresizingMaskIntoConstraints="NO" id="lJL-Ns-Qxc">
-                                        <rect key="frame" x="0.0" y="145" width="335" height="522"/>
+                                        <rect key="frame" x="0.0" y="155" width="335.00000000000023" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -547,7 +555,7 @@
         <!--TutVC5-->
         <scene sceneID="LKL-ey-FZS">
             <objects>
-                <viewController restorationIdentifier="VC5" storyboardIdentifier="VC5" title="TutVC5" id="8vd-gO-v9X" sceneMemberID="viewController">
+                <viewController restorationIdentifier="VC5" storyboardIdentifier="VC5" title="TutVC5" id="8vd-gO-v9X" customClass="LastTutVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J3G-Hq-gPA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -557,7 +565,7 @@
                                 <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="30"/>
                                 <state key="normal" title="Let's Go!"/>
                                 <connections>
-                                    <action selector="dismissTutBtn:" destination="txr-m4-wN9" eventType="touchUpInside" id="2hm-Wa-gYo"/>
+                                    <action selector="dismiss:" destination="8vd-gO-v9X" eventType="touchUpInside" id="je5-X4-J5p"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -568,16 +576,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HAq-Db-N9G"/>
                     </view>
+                    <connections>
+                        <outlet property="dismiss" destination="jie-Fh-TD4" id="09u-kk-7Uz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJt-Ak-fIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="txr-m4-wN9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4065" y="-309"/>
         </scene>
         <!--TutorialVC-->
         <scene sceneID="bfN-Pi-3N4">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vr7-S5-Hup" customClass="TutorialVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vr7-S5-Hup" customClass="TutorialVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rdn-yW-Sf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2144" y="-1044"/>

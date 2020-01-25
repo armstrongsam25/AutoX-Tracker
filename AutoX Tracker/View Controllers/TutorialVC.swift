@@ -10,12 +10,6 @@ import UIKit
 
 // MARK: Pageview Class
 class TutorialVC: UIPageViewController, UIPageViewControllerDelegate {
-    @IBAction func dismissTutBtn(_ sender: Any) {
-        print("pressed")
-        self.view.removeFromSuperview()
-        self.removeFromParent()
-    }
-    
     // Getting tutorial VCs
     fileprivate lazy var pages: [UIViewController] = {
             return [
@@ -47,45 +41,53 @@ class TutorialVC: UIPageViewController, UIPageViewControllerDelegate {
 } //End of Tutorial VC Class
 
 // MARK: -Pageview Datasource
-    extension TutorialVC: UIPageViewControllerDataSource {
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-            
-            guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
-            
-            let previousIndex = viewControllerIndex - 1
-            
-            guard previousIndex >= 0 else { return nil }
-            
-            guard pages.count > previousIndex else { return nil }
-            
-            return pages[previousIndex]
-        }
+extension TutorialVC: UIPageViewControllerDataSource {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-            guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
-            
-            let nextIndex = viewControllerIndex + 1
-            
-            guard nextIndex < pages.count else { return nil }
-            
-            guard pages.count > nextIndex else { return nil }
-            
-            return pages[nextIndex]
-        }
+        guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
         
-        func presentationCount(for pageViewController: UIPageViewController) -> Int {
-            setupPageControl()
-            return pages.count
-        }
-
-        func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-            return 0
-        }
+        let previousIndex = viewControllerIndex - 1
         
-        private func setupPageControl() {
-            let appearance = UIPageControl.appearance()
-            appearance.pageIndicatorTintColor = UIColor.darkGray
-            appearance.currentPageIndicatorTintColor = UIColor.red
-            appearance.backgroundColor = UIColor.white
-        }
+        guard previousIndex >= 0 else { return nil }
+        
+        guard pages.count > previousIndex else { return nil }
+        
+        return pages[previousIndex]
     }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
+        
+        let nextIndex = viewControllerIndex + 1
+        
+        guard nextIndex < pages.count else { return nil }
+        
+        guard pages.count > nextIndex else { return nil }
+        
+        return pages[nextIndex]
+    }
+    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        setupPageControl()
+        return pages.count
+    }
+
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+    
+    private func setupPageControl() {
+        let appearance = UIPageControl.appearance()
+        appearance.pageIndicatorTintColor = UIColor.darkGray
+        appearance.currentPageIndicatorTintColor = UIColor.red
+        appearance.backgroundColor = UIColor.white
+    }
+}
+
+class LastTutVC: UIViewController {
+    @IBOutlet weak var dismiss: UIButton!
+    @IBAction func dismiss(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
