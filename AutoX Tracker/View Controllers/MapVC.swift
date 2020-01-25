@@ -27,7 +27,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
-        performSegue(withIdentifier: "tutorialSegue", sender: nil)
+        if isFirstLaunch() {
+            performSegue(withIdentifier: "tutorialSegue", sender: nil)
+        }
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
         locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
@@ -75,6 +77,17 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             self.present(alert, animated: true)
         } else {
             locationMgr!.requestWhenInUseAuthorization()
+        }
+    }
+    
+    
+    func isFirstLaunch() -> Bool {
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            return false
+        } else {
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            return true
         }
     }
     

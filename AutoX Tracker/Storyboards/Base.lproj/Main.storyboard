@@ -324,6 +324,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                 <state key="normal" title="Tutorial"/>
+                                <connections>
+                                    <segue destination="vr7-S5-Hup" kind="presentation" modalPresentationStyle="fullScreen" id="FIv-xe-eMW"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -587,7 +590,9 @@
         <!--TutorialVC-->
         <scene sceneID="bfN-Pi-3N4">
             <objects>
-                <pageViewController storyboardIdentifier="PageController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vr7-S5-Hup" customClass="TutorialVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vr7-S5-Hup" customClass="TutorialVC" customModule="AutoX_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zlQ-9C-esX"/>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rdn-yW-Sf7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2144" y="-1044"/>
@@ -646,5 +651,8 @@
         <image name="Tut3" width="825" height="1673"/>
         <image name="Tut4" width="824" height="1671"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="FIv-xe-eMW"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
