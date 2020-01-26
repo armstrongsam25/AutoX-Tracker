@@ -382,7 +382,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut1" translatesAutoresizingMaskIntoConstraints="NO" id="oHG-XP-AfD">
-                                        <rect key="frame" x="0.0" y="155" width="375" height="512.00000000000045"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -517,7 +517,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut3" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-ev-5bZ">
-                                        <rect key="frame" x="0.0" y="155" width="375" height="512.00000000000045"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -587,7 +587,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut4" translatesAutoresizingMaskIntoConstraints="NO" id="lJL-Ns-Qxc">
-                                        <rect key="frame" x="0.0" y="155" width="375.00000000000023" height="512"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
