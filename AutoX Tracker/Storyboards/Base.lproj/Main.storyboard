@@ -268,7 +268,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gMt-kf-4VI">
                                 <rect key="frame" x="0.0" y="206" width="375" height="417"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">This app aims to help you learn dynamic/inconsistent courses (mainly autocross) by leaving a breadcrumb trail as you walk the course for the first time.   It is recommended to mount your device to your dashboard or another surface where you can have a clear view of the screen.  Once you have the course mapped, press on the course you about to run. This will bring up the Course View and Lap Timer. When you leave the start line press the "Start Timer" button, and drive around the course.  If you get lost, glance at your device and you will see where you are/need to be.  After crossing the finish line, press the "Stop Timing" button to save your lap time. Press the "Times" button to view your lap times.   -- If you like the app, please leave a review on the App Store! 😄</string>
+                                <mutableString key="text">This app aims to help you learn dynamic/inconsistent courses (mainly autocross) by leaving a breadcrumb trail as you walk the course for the first time.   It is recommended to mount your device to your dashboard or another surface where you can have a clear view of the screen.  Once you have the course mapped, press on the course you about to run. This will bring up the Course View and Lap Timer. When you leave the start line press the "Start Timer" button, and drive around the course.  If you get lost, glance at your device and you will see where you are/need to be.  After crossing the finish line, press the "Stop Timing" button to save your lap time. Press the "Times" button to view your lap times.   -- If you like the app, please leave a review on the App Store!  😄</mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
@@ -382,7 +382,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut1" translatesAutoresizingMaskIntoConstraints="NO" id="oHG-XP-AfD">
-                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512.00000000000045"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -517,7 +517,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut3" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-ev-5bZ">
-                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512.00000000000045"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -587,7 +587,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut4" translatesAutoresizingMaskIntoConstraints="NO" id="lJL-Ns-Qxc">
-                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
+                                        <rect key="frame" x="0.0" y="155" width="375.00000000000023" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
