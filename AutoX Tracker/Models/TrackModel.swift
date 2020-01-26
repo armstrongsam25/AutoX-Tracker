@@ -15,15 +15,11 @@ public class TrackModel {
     public var image: UIImage?
     public var title: String
     public var dateCreated: String
-    //var coordinants: [CLLocationCoordinate2D]
     public var latArray: [Double]
     public var lonArray: [Double]
     
     // MARK: Initialization
     init(title: String, lat: [Double], lon: [Double]){
-        if title == "" {
-            //set date as title
-        }
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"

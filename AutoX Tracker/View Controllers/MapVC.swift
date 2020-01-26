@@ -27,6 +27,9 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
+        if isFirstLaunch() {
+            performSegue(withIdentifier: "tutorialSegue", sender: nil)
+        }
         locationMgr = CLLocationManager()
         locationMgr?.delegate = self
         locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
@@ -74,6 +77,17 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             self.present(alert, animated: true)
         } else {
             locationMgr!.requestWhenInUseAuthorization()
+        }
+    }
+    
+    
+    func isFirstLaunch() -> Bool {
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            return false
+        } else {
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            return true
         }
     }
     
@@ -148,17 +162,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     
     
     // MARK: didUpdateLocations
-    var isFirstUpdate = true
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //append locations to list here
         if isTracking {
             capturedTracks.append(locations)
-        }
-        if isFirstUpdate {
-//            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-//            let initialLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-//            centerMapOnLocation(location: initialLocation)
-            isFirstUpdate = false
         }
     }
     
@@ -201,7 +208,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
-            // Call trackmodel here
             if textField!.text! == "" {
                 textField!.text = "Course #\(courseCount)"
             }
@@ -209,6 +215,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             savedTracks.append(currentTrack)
             savedTimes.append([])
             saveToUserDefaults(tracks: savedTracks)
+            saveTimesToUserDefaults(times: savedTimes)
             self.mapView.removeOverlay(self.geodesic)
             capturedTracks.removeAll()
             coordinantsForTracks.removeAll()

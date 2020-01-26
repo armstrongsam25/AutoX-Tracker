@@ -17,7 +17,6 @@ var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        //removeAllUserDefaults();
         loadFromUserDefaults()
         loadTimesFromUserDefaults()
         return true
@@ -115,8 +114,8 @@ func loadFromUserDefaults() {
     if count != 0 {
         var index: Int = 0
         while index < count {
-            let title = UserDefaults.standard.string(forKey: "title\(index)") ?? "n/a"
-            let date = UserDefaults.standard.string(forKey: "date\(index)") ?? "n/a"
+            let title = UserDefaults.standard.string(forKey: "title\(index)") ?? "Error!"
+            let date = UserDefaults.standard.string(forKey: "date\(index)") ?? "Error!"
             let latArray = UserDefaults.standard.array(forKey: "lat\(index)") as? [Double] ?? [Double]()
             let lonArray =  UserDefaults.standard.array(forKey: "lon\(index)") as? [Double] ?? [Double]()
             let currentTrack = TrackModel(title: title, date: date, lat: latArray, lon: lonArray)
@@ -141,17 +140,10 @@ func loadTimesFromUserDefaults() {
 
 // MARK: removeAllUserDefaults
 func removeAllUserDefaults() {
-    let count: Int = UserDefaults.standard.integer(forKey: "count")
-    var index: Int = 0
-    while index <= count {
-        UserDefaults.standard.removeObject(forKey: "title\(index)")
-        UserDefaults.standard.removeObject(forKey: "date\(index)")
-        UserDefaults.standard.removeObject(forKey: "lat\(index)")
-        UserDefaults.standard.removeObject(forKey: "lon\(index)")
-        index += 1
-    }
-    UserDefaults.standard.set(0, forKey: "count")
+    let domain = Bundle.main.bundleIdentifier!
+    UserDefaults.standard.removePersistentDomain(forName: domain)
     UserDefaults.standard.synchronize()
+    print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
 }
 
 // MARK: removeAllTimeDefaults()

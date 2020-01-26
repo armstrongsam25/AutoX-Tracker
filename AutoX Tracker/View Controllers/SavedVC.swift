@@ -11,7 +11,6 @@ import UIKit
 class SavedVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Adding button and button style to edit button for tableview
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
@@ -20,6 +19,20 @@ class SavedVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if savedTracks.count != 0 {
+            tableView.separatorStyle = .singleLine
+            tableView.backgroundView = nil
+        }
+        else {
+            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "No Saved Courses.\n Press \"Start Tracking\" to start saving."
+            noDataLabel.textColor = UIColor.black
+            noDataLabel.font = UIFont(name: "Futura", size: 19)
+            noDataLabel.textAlignment = .center
+            noDataLabel.numberOfLines = 2
+            tableView.backgroundView = noDataLabel
+            tableView.separatorStyle = .none
+        }
         return 1
     }
 
@@ -49,9 +62,11 @@ class SavedVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            // Need to move array of tracks up when a smaller index is deleted
             savedTracks.remove(at: indexPath.row)
             saveToUserDefaults(tracks: savedTracks)
             savedTimes.remove(at: indexPath.row)
+            saveTimesToUserDefaults(times: savedTimes)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
