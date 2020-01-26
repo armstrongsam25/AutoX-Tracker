@@ -17,6 +17,7 @@ var latitudeForTracks = [Double]()
 var longitudeForTracks = [Double]()
 var savedTracks = [TrackModel]()
 
+
 class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: CLASS VARIABLES
     @IBOutlet weak var mapView: MKMapView!  // Linking MapView
@@ -230,6 +231,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }))
         self.present(alert, animated: true, completion:  nil)
     }
+    
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

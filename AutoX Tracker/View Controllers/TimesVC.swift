@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 // MARK: Global Variables
 var savedTimes: [[String]] = []
@@ -15,6 +16,7 @@ var savedTimes: [[String]] = []
 class TimesVC: UITableViewController {
     var indexOfCourse: Int = -1 // For use with TimesVC
     @IBOutlet weak var timeLabel: UILabel!
+    var adBanner: GADBannerView!
     
     // MARK: viewDidLoad()
     override func viewDidLoad() {
@@ -25,8 +27,40 @@ class TimesVC: UITableViewController {
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
+        
+        //ad setup
+        adBanner = GADBannerView(adSize: kGADAdSizeBanner )
+        addBannerViewToView(adBanner)
+        adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
+        //adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
     }
 
+    
+    // ad function
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+     bannerView.translatesAutoresizingMaskIntoConstraints = false
+     view.addSubview(bannerView)
+     view.addConstraints(
+       [NSLayoutConstraint(item: bannerView,
+                           attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: view.safeAreaLayoutGuide,
+                           attribute: .bottom,
+                           multiplier: 1,
+                           constant: 0),
+        NSLayoutConstraint(item: bannerView,
+                           attribute: .centerX,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .centerX,
+                           multiplier: 1,
+                           constant: 0)
+       ])
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
