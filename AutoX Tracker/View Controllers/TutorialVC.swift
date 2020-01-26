@@ -90,4 +90,10 @@ class LastTutVC: UIViewController {
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        dismiss.layer.borderWidth = 2
+        dismiss.layer.borderColor = UIColor.darkGray.cgColor
+    }
 }

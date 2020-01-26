@@ -86,11 +86,11 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Help" id="56k-8R-94z">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="M3i-i3-EZz">
-                                <rect key="frame" x="299" y="3.5" width="60" height="37"/>
+                                <rect key="frame" x="290" y="3.5" width="69" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <state key="normal" title="Saved">
+                                <state key="normal" title="Courses">
                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -268,7 +268,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gMt-kf-4VI">
                                 <rect key="frame" x="0.0" y="206" width="375" height="417"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">This app aims to help you learn an autocross course by leaving a breadcrumb trail as you walk the course.   Press the "Tutorial" button in the top right of this screen to learn how to use this app.  If you like the app, please support me by leaving a review on the App Store! 😄</mutableString>
+                                <string key="text">This app aims to help you learn an autocross course by leaving a breadcrumb trail as you walk the course.   Press the "Tutorial" button in the top right of this screen to learn how to use this app.  If you like the app, please support me by leaving a review on the App Store! 😄</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
@@ -345,30 +345,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YdV-IT-3s0">
-                                <rect key="frame" x="20" y="0.0" width="335" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Welcome to AutoX Tracker!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4l-8B-n6j">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4l-8B-n6j">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="d3Y-ew-k9m"/>
                                         </constraints>
-                                        <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Welcome to AutoX Tracker!">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="27" name="Rockwell-Italic"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="This is your main view. Press the &quot;Start Tracking&quot; button to leave a breadcrumb trail as you walk around the course." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnN-mP-qis">
-                                        <rect key="frame" x="0.0" y="60" width="335" height="85"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnN-mP-qis">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="85" id="WL4-Ld-JOX"/>
                                         </constraints>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="This is your main view. Press the &quot;Start Tracking&quot; button to begin creating the course.">
+                                                <attributes>
+                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" size="19" name="Futura-MediumItalic"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.90000000000000002" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut1" translatesAutoresizingMaskIntoConstraints="NO" id="oHG-XP-AfD">
-                                        <rect key="frame" x="0.0" y="155" width="335" height="512.00000000000045"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -379,9 +393,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eyS-lj-cGq" firstAttribute="trailing" secondItem="YdV-IT-3s0" secondAttribute="trailing" constant="20" id="6QZ-ao-rvg"/>
+                            <constraint firstItem="eyS-lj-cGq" firstAttribute="trailing" secondItem="YdV-IT-3s0" secondAttribute="trailing" id="6QZ-ao-rvg"/>
                             <constraint firstItem="eyS-lj-cGq" firstAttribute="bottom" secondItem="YdV-IT-3s0" secondAttribute="bottom" id="89o-3H-KxI"/>
-                            <constraint firstItem="YdV-IT-3s0" firstAttribute="leading" secondItem="eyS-lj-cGq" secondAttribute="leading" constant="20" id="MQe-Yo-8ST"/>
+                            <constraint firstItem="YdV-IT-3s0" firstAttribute="leading" secondItem="eyS-lj-cGq" secondAttribute="leading" id="MQe-Yo-8ST"/>
                             <constraint firstItem="YdV-IT-3s0" firstAttribute="top" secondItem="eyS-lj-cGq" secondAttribute="top" id="aXH-BZ-wQ1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eyS-lj-cGq"/>
@@ -400,30 +414,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wDW-M1-VVZ">
-                                <rect key="frame" x="20" y="0.0" width="335" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Saved Courses" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7N3-z6-BgB">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7N3-z6-BgB">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="05O-em-EDl"/>
                                         </constraints>
-                                        <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Saved Courses">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="28" name="Rockwell-Italic"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Tap to view the course and bring up the race timer." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddS-VR-GMl">
-                                        <rect key="frame" x="0.0" y="60" width="335" height="85"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddS-VR-GMl">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="85" id="CPS-Zb-bzX"/>
                                         </constraints>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Once you have finished a course, it will be saved here. Tap a course to bring up the Course View and Lap Timer.">
+                                                <attributes>
+                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="19" name="Futura-MediumItalic"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.90000000000000002" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut2" translatesAutoresizingMaskIntoConstraints="NO" id="h11-Jd-2id">
-                                        <rect key="frame" x="0.0" y="155" width="335" height="512"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -431,10 +459,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wDW-M1-VVZ" firstAttribute="leading" secondItem="UR5-AA-WiA" secondAttribute="leading" constant="20" id="Mk4-Do-aKg"/>
+                            <constraint firstItem="wDW-M1-VVZ" firstAttribute="leading" secondItem="UR5-AA-WiA" secondAttribute="leading" id="Mk4-Do-aKg"/>
                             <constraint firstItem="UR5-AA-WiA" firstAttribute="bottom" secondItem="wDW-M1-VVZ" secondAttribute="bottom" id="kVo-JE-qKK"/>
                             <constraint firstItem="wDW-M1-VVZ" firstAttribute="top" secondItem="UR5-AA-WiA" secondAttribute="top" id="mPO-n7-K8M"/>
-                            <constraint firstAttribute="trailing" secondItem="wDW-M1-VVZ" secondAttribute="trailing" constant="20" id="qIr-lT-ipv"/>
+                            <constraint firstAttribute="trailing" secondItem="wDW-M1-VVZ" secondAttribute="trailing" id="qIr-lT-ipv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UR5-AA-WiA"/>
                     </view>
@@ -452,30 +480,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-N5-iYE">
-                                <rect key="frame" x="20" y="0.0" width="335" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Course View" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEK-bP-8d4">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEK-bP-8d4">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="esZ-BV-E8B"/>
                                         </constraints>
-                                        <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Course View">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="28" name="Rockwell-Italic"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Track yourself as you run the course. Press the &quot;Start Timer&quot; button to record your lap times." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-pL-xBd">
-                                        <rect key="frame" x="0.0" y="60" width="335" height="85"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-pL-xBd">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="85" id="xKV-Fe-4mq"/>
                                         </constraints>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Prevent confusion! Track yourself while on the course. Press the &quot;Start Timer&quot; button to record your lap times.">
+                                                <attributes>
+                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="19" name="Futura-MediumItalic"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.90000000000000002" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut3" translatesAutoresizingMaskIntoConstraints="NO" id="5L5-ev-5bZ">
-                                        <rect key="frame" x="0.0" y="155" width="335" height="512.00000000000045"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -489,8 +531,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1zs-ya-wsH" firstAttribute="bottom" secondItem="1aX-N5-iYE" secondAttribute="bottom" id="32z-Cx-Kdl"/>
-                            <constraint firstItem="1aX-N5-iYE" firstAttribute="leading" secondItem="1zs-ya-wsH" secondAttribute="leading" constant="20" id="Yuy-59-lxf"/>
-                            <constraint firstAttribute="trailing" secondItem="1aX-N5-iYE" secondAttribute="trailing" constant="20" id="jjd-6M-Rzj"/>
+                            <constraint firstItem="1aX-N5-iYE" firstAttribute="leading" secondItem="1zs-ya-wsH" secondAttribute="leading" id="Yuy-59-lxf"/>
+                            <constraint firstAttribute="trailing" secondItem="1aX-N5-iYE" secondAttribute="trailing" id="jjd-6M-Rzj"/>
                             <constraint firstItem="1aX-N5-iYE" firstAttribute="top" secondItem="1zs-ya-wsH" secondAttribute="top" id="wFD-ys-KsB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1zs-ya-wsH"/>
@@ -509,29 +551,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eW0-bf-Fbb">
-                                <rect key="frame" x="20" y="0.0" width="335" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Lap Times" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzm-fo-EVI">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzm-fo-EVI">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Frv-OD-4Xh"/>
                                         </constraints>
-                                        <color key="textColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Lap Times">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="28" name="Rockwell-Italic"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Your lap times are saved here for you to manage or view." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-8S-Mgo">
-                                        <rect key="frame" x="0.0" y="60" width="335" height="85"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-8S-Mgo">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="85" id="WXp-YI-kYf"/>
                                         </constraints>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="After you have finished your lap, your time will be stored here for you to manage and edit.">
+                                                <attributes>
+                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" size="19" name="Futura-MediumItalic"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.90000000000000002" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tut4" translatesAutoresizingMaskIntoConstraints="NO" id="lJL-Ns-Qxc">
-                                        <rect key="frame" x="0.0" y="155" width="335.00000000000023" height="512"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -543,10 +599,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="a2W-gO-e0f" firstAttribute="trailing" secondItem="eW0-bf-Fbb" secondAttribute="trailing" constant="20" id="7XG-sX-GOM"/>
+                            <constraint firstItem="a2W-gO-e0f" firstAttribute="trailing" secondItem="eW0-bf-Fbb" secondAttribute="trailing" id="7XG-sX-GOM"/>
                             <constraint firstItem="eW0-bf-Fbb" firstAttribute="top" secondItem="a2W-gO-e0f" secondAttribute="top" id="JyE-FH-7Oo"/>
                             <constraint firstItem="a2W-gO-e0f" firstAttribute="bottom" secondItem="eW0-bf-Fbb" secondAttribute="bottom" id="fCc-Sk-sly"/>
-                            <constraint firstItem="eW0-bf-Fbb" firstAttribute="leading" secondItem="a2W-gO-e0f" secondAttribute="leading" constant="20" id="s5u-lu-niZ"/>
+                            <constraint firstItem="eW0-bf-Fbb" firstAttribute="leading" secondItem="a2W-gO-e0f" secondAttribute="leading" id="s5u-lu-niZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="a2W-gO-e0f"/>
                     </view>
@@ -563,10 +619,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jie-Fh-TD4">
-                                <rect key="frame" x="128" y="307.5" width="119" height="52"/>
-                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="30"/>
-                                <state key="normal" title="Let's Go!"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jie-Fh-TD4">
+                                <rect key="frame" x="92.5" y="301" width="190" height="65"/>
+                                <color key="backgroundColor" red="0.9578205958549223" green="0.9578205958549223" blue="0.9578205958549223" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="190" id="hKx-rG-9S1"/>
+                                    <constraint firstAttribute="height" constant="65" id="uyH-i3-lBf"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Let's Go!">
+                                            <attributes>
+                                                <color key="NSColor" red="0.99777466059999997" green="0.2722316682" blue="0.22740387919999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <font key="NSFont" size="30" name="Rockwell-BoldItalic"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingMiddle" baseWritingDirection="natural" lineHeightMultiple="1.3" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="dismiss:" destination="8vd-gO-v9X" eventType="touchUpInside" id="je5-X4-J5p"/>
                                 </connections>
@@ -574,8 +644,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="jie-Fh-TD4" firstAttribute="centerY" secondItem="J3G-Hq-gPA" secondAttribute="centerY" id="L4H-GI-cli"/>
-                            <constraint firstItem="jie-Fh-TD4" firstAttribute="centerX" secondItem="J3G-Hq-gPA" secondAttribute="centerX" id="c7b-40-3Zd"/>
+                            <constraint firstItem="jie-Fh-TD4" firstAttribute="centerY" secondItem="J3G-Hq-gPA" secondAttribute="centerY" id="36g-gu-JNL"/>
+                            <constraint firstItem="jie-Fh-TD4" firstAttribute="centerX" secondItem="J3G-Hq-gPA" secondAttribute="centerX" id="A0m-wH-Zbi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HAq-Db-N9G"/>
                     </view>
@@ -585,7 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJt-Ak-fIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4065" y="-309"/>
+            <point key="canvasLocation" x="4064.8000000000002" y="-309.89505247376314"/>
         </scene>
         <!--TutorialVC-->
         <scene sceneID="bfN-Pi-3N4">
@@ -652,7 +722,7 @@
         <image name="Tut4" width="824" height="1671"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FIv-xe-eMW"/>
+        <segue reference="HNE-HO-qF1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
