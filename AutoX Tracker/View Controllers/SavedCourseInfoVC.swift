@@ -185,7 +185,6 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
 }
 
 
-
 // MARK: -MapView Delegate
 extension SavedCourseInfo: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

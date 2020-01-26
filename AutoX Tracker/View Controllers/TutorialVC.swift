@@ -25,8 +25,10 @@ class TutorialVC: UIPageViewController, UIPageViewControllerDelegate {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // page setup
         self.dataSource = self
         self.delegate = self
         let appear = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
@@ -49,33 +51,37 @@ extension TutorialVC: UIPageViewControllerDataSource {
         
         let previousIndex = viewControllerIndex - 1
         
-        guard previousIndex >= 0 else { return nil }
+        guard previousIndex >= 0 else { return nil } // stops looping
         
         guard pages.count > previousIndex else { return nil }
         
         return pages[previousIndex]
     }
     
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
         
         let nextIndex = viewControllerIndex + 1
         
-        guard nextIndex < pages.count else { return nil }
+        guard nextIndex < pages.count else { return nil } //stops looping
         
         guard pages.count > nextIndex else { return nil }
         
         return pages[nextIndex]
     }
     
+    
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         setupPageControl()
         return pages.count
     }
+    
 
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
+    
     
     private func setupPageControl() {
         let appearance = UIPageControl.appearance()
@@ -85,6 +91,7 @@ extension TutorialVC: UIPageViewControllerDataSource {
     }
 }
 
+// MARK: -View Controller for TutVC5
 class LastTutVC: UIViewController {
     @IBOutlet weak var dismiss: UIButton!
     @IBAction func dismiss(_ sender: Any) {

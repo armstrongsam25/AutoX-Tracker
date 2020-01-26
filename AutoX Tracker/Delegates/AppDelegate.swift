@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @available(iOS 13.0, *)
 @UIApplicationMain
@@ -19,6 +20,9 @@ var window: UIWindow?
         // Override point for customization after application launch.
         loadFromUserDefaults()
         loadTimesFromUserDefaults()
+        
+        // ad setup
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
     }
 
