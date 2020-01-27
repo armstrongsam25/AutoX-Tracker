@@ -38,7 +38,7 @@ class TimesVC: UITableViewController {
     }
 
     
-    // ad function
+    // MARK: Adding Ad to bottom of screen
     func addBannerViewToView(_ bannerView: GADBannerView) {
      bannerView.translatesAutoresizingMaskIntoConstraints = false
      view.addSubview(bannerView)
@@ -80,6 +80,7 @@ class TimesVC: UITableViewController {
         }
         return 1
     }
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return savedTimes[indexOfCourse].count
@@ -93,14 +94,12 @@ class TimesVC: UITableViewController {
     }
     
 
-    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
 
-    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -112,7 +111,6 @@ class TimesVC: UITableViewController {
     }
     
 
-    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let temp = savedTimes[indexOfCourse][fromIndexPath.row]
@@ -120,14 +118,13 @@ class TimesVC: UITableViewController {
         savedTimes[indexOfCourse][to.row] = temp
         saveTimesToUserDefaults(times: savedTimes)
     }
-    
 
     
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-}
+} // End of TimesVC class
 
 // MARK: Custom Tableview Cell
 class TimesCell: UITableViewCell {

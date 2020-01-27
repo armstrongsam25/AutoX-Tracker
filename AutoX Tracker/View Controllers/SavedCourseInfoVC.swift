@@ -68,15 +68,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: viewWillDisappear()
-    override func viewWillDisappear(_ animated: Bool) {
-        infoMap.removeOverlay(self.geodesic)
-        //infoMapMgr!.stopUpdatingLocation()
-        //infoMapMgr!.stopUpdatingHeading()
-    }
-    
-    
-    // MARK: createInfoPolyline
+    // MARK: createInfoPolyline()
     var geodesic = MKGeodesicPolyline()
     func createInfoPolyline(mapView: MKMapView) {
         var points: [CLLocationCoordinate2D] = []
@@ -90,7 +82,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
         geodesic = MKGeodesicPolyline(coordinates: points, count: points.count)
         mapView.addOverlay(geodesic)
 
-        // This makes the zoom level right
+        // This makes the zoom level correct
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             let region = MKCoordinateRegion(center: points[0], span: span)
@@ -99,7 +91,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: didUpdateLocations
+    // MARK: didUpdateLocations()
     var isFirstUpdate = true
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if isFirstUpdate {
@@ -111,7 +103,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: centerMapOnLocation
+    // MARK: centerMapOnLocation()
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
                                                   latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
@@ -187,6 +179,7 @@ class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
 
 // MARK: -MapView Delegate
 extension SavedCourseInfo: MKMapViewDelegate {
+    // MARK: Rendering Polyline
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
@@ -207,7 +200,7 @@ extension SavedCourseInfo: MKMapViewDelegate {
         infoMap.setRegion(coordinateRegion, animated: true)
         infoMap.setUserTrackingMode(.followWithHeading, animated: true)
         
-        //setting start and finish
+        //setting start and finish points
             let start = MKPointAnnotation()
             start.coordinate = CLLocationCoordinate2DMake(savedLats[0], savedLons[0])
             start.title = "Start"

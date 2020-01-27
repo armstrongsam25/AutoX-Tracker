@@ -2,8 +2,8 @@
 //  TrackModel.swift
 //  AutoX Tracker
 //
-//  Created by Sam Armstrong on 12/31/19.
-//  Copyright © 2019 Samuel Armstrong. All rights reserved.
+//  Created by Samuel Armstrong on 12/31/19.
+//  Copyright © 2020 Samuel Armstrong. All rights reserved.
 //
 
 import UIKit
@@ -12,7 +12,7 @@ import CoreLocation
 public class TrackModel {
 
     // MARK: Properties
-    public var image: UIImage?
+    public var image: UIImage? = UIImage(named: "SavedTrackImage.png")
     public var title: String
     public var dateCreated: String
     public var latArray: [Double]
@@ -24,7 +24,7 @@ public class TrackModel {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
         
-        self.image = UIImage(named: "SavedTrackImage.png") // TODO: set to static image
+        //self.image = UIImage(named: "SavedTrackImage.png") // TODO: set to static image
         self.title = title
         self.dateCreated = formatter.string(from: date)
         self.latArray = lat
@@ -32,7 +32,7 @@ public class TrackModel {
     }
     
     init(title: String, date: String, lat: [Double], lon: [Double]){
-        self.image = UIImage(named: "SavedTrackImage.png") // TODO: set to static image
+        //self.image = UIImage(named: "SavedTrackImage.png") // TODO: set to static image
         self.title = title
         self.dateCreated = date
         self.latArray = lat
@@ -40,7 +40,7 @@ public class TrackModel {
     }
     
     init(){
-        self.image = UIImage(named: "SavedTrackImage.png")
+        //self.image = UIImage(named: "SavedTrackImage.png")
         self.title = ""
         self.dateCreated = ""
         self.latArray = []

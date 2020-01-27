@@ -3,7 +3,7 @@
 //  AutoX Tracker
 //
 //  Created by Samuel Armstrong on 12/28/19.
-//  Copyright © 2019 Samuel Armstrong. All rights reserved.
+//  Copyright © 2020 Samuel Armstrong. All rights reserved.
 //
 
 import UIKit
@@ -81,7 +81,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    
+    // MARK: isFirstLaunch()
     func isFirstLaunch() -> Bool {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
@@ -93,7 +93,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: didChangeAuthorization
+    // MARK: didChangeAuthorization()
     //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         //Allow Once and Allow while using both use this
@@ -125,7 +125,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: centerMapOnLocation
+    // MARK: centerMapOnLocation()
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
                                                   latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
@@ -162,7 +162,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: didUpdateLocations
+    // MARK: didUpdateLocations()
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //append locations to list here
         if isTracking {
@@ -255,6 +255,7 @@ extension MapVC: MKMapViewDelegate {
         return MKPolylineRenderer(overlay: overlay)
     }
     
+    // MARK: viewWillAppear() delegate
     override func viewWillAppear(_ animated: Bool) {
         // setting zoom
         mapView.setUserTrackingMode(.follow, animated: true)

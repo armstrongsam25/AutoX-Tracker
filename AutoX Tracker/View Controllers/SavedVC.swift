@@ -2,8 +2,8 @@
 //  SavedVC.swift
 //  AutoX Tracker
 //
-//  Created by Sam Armstrong on 12/31/19.
-//  Copyright © 2019 Samuel Armstrong. All rights reserved.
+//  Created by Samuel Armstrong on 12/31/19.
+//  Copyright © 2020 Samuel Armstrong. All rights reserved.
 //
 
 import UIKit
@@ -12,6 +12,7 @@ import GoogleMobileAds
 class SavedVC: UITableViewController {
     var adBanner: GADBannerView!
     
+    // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         let editButton = self.editButtonItem
@@ -28,7 +29,7 @@ class SavedVC: UITableViewController {
     }
     
     
-    // ad function
+    // MARK: Adding Ad to bottom of screen
     func addBannerViewToView(_ bannerView: GADBannerView) {
      bannerView.translatesAutoresizingMaskIntoConstraints = false
      view.addSubview(bannerView)
@@ -52,7 +53,7 @@ class SavedVC: UITableViewController {
 
 
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         if savedTracks.count != 0 {
             tableView.separatorStyle = .singleLine

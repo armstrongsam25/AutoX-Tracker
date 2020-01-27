@@ -27,7 +27,6 @@
 		22A07BD123BB25EF0007DA99 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 		22AE17E523BBCF5C00247A08 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 		22B8EFD823CA635F00A8ABE6 /* TutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialVC.swift; sourceTree = "<group>"; };
-		22E13E8523DBE27D00CDF1FA /* output.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = output.gpx; path = ../output.gpx; sourceTree = "<group>"; };
 		22EB334723C2BC65001B0409 /* SavedCourseInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCourseInfoVC.swift; sourceTree = "<group>"; };
 		22EBD3B423B71C3C003E0E9E /* AutoX Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AutoX Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EBD3B723B71C3C003E0E9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +95,6 @@
 		22EBD3AB23B71C3C003E0E9E = {
 			isa = PBXGroup;
 			children = (
-				22E13E8523DBE27D00CDF1FA /* output.gpx */,
 				22EBD3B623B71C3C003E0E9E /* AutoX Tracker */,
 				22EBD3B523B71C3C003E0E9E /* Products */,
 				38B2F6E0691B85F72CF79838 /* Pods */,
