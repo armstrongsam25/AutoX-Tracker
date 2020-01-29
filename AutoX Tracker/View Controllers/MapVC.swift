@@ -20,10 +20,11 @@ var savedTracks = [TrackModel]()
 
 class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: CLASS VARIABLES
-    @IBOutlet weak var mapView: MKMapView!  // Linking MapView
+    weak var mapView: MKMapView!  // Linking MapView
     var locationMgr: CLLocationManager?
     var regionRadius: CLLocationDistance = 15
     var didAllowLocation: Bool?
+    var isFirstViewing: Bool? = true
     
     
     // MARK: viewDidLoad()
@@ -259,9 +260,6 @@ extension MapVC: MKMapViewDelegate {
         return MKPolylineRenderer(overlay: overlay)
     }
     
-    override func viewDidLayoutSubviews() {
-       
-    }
     
     // MARK: viewWillAppear()
     override func viewWillAppear(_ animated: Bool) {
@@ -275,7 +273,13 @@ extension MapVC: MKMapViewDelegate {
         locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
         
         // helper prevents MKMapView declaration from disappearing
-        let helper = MKMapView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: TrackingButtonAttrs.frame.origin.y - UIApplication.shared.keyWindow!.safeAreaInsets.bottom))
+        var helper: MKMapView
+        if isFirstViewing! {
+            isFirstViewing = false
+            helper = MKMapView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: TrackingButtonAttrs.frame.origin.y - UIApplication.shared.keyWindow!.safeAreaInsets.bottom))
+        } else {
+            helper = MKMapView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: TrackingButtonAttrs.frame.origin.y))
+        }
         
         mapView = helper
         mapView.delegate = self
@@ -300,13 +304,19 @@ extension MapVC: MKMapViewDelegate {
         compassButton.translatesAutoresizingMaskIntoConstraints = false
         compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
         compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
+        
+        // setting zoom
+        let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+        let location = CLLocationCoordinate2D(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
+        let coordinateRegion = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(coordinateRegion, animated: true)
         mapView.setUserTrackingMode(.follow, animated: true)
         view.addSubview(mapView)
         
         // If user location is already authorized, start tracking. Else request to track location
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationMgr!.startUpdatingLocation()
-        } else if CLLocationManager.authorizationStatus() == .denied{
+        } else if CLLocationManager.authorizationStatus() == .denied || CLLocationManager.authorizationStatus() == .notDetermined {
             let alert = UIAlertController(title: "Location Required!", message: "This app requires your location to function properly. Please allow location access in Settings.", preferredStyle: .alert)
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {

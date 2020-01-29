@@ -408,7 +408,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3544FF0D50DA423B4E28760E /* Pods-AutoX Tracker.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AutoX Tracker icons";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AutoX Icons NEW";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZSMMKYL58;
 				GCC_OPTIMIZATION_LEVEL = fast;
@@ -429,7 +429,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 32E63A63456B0ECDD599FA6C /* Pods-AutoX Tracker.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AutoX Tracker icons";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AutoX Icons NEW";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6ZSMMKYL58;
 				GCC_OPTIMIZATION_LEVEL = fast;
