@@ -12,50 +12,19 @@ import MapKit
 
 class SavedCourseInfo: UIViewController, CLLocationManagerDelegate {
     //MARK: Declaring Class Variables
-    @IBOutlet weak var infoMap: MKMapView!
+    weak var infoMap: MKMapView!
     var infoMapMgr: CLLocationManager?
     var savedLats: [Double] = []
     var savedLons: [Double] = []
     var viewTitle: String = ""
     var regionRadius: Double = 15
     var indexOfCourse: Int = -1
+    var isFirstViewing: Bool? = true
     
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
-        createInfoPolyline(mapView: infoMap)
-        infoMapMgr = CLLocationManager()
-        infoMapMgr?.delegate = self
-        infoMapMgr?.desiredAccuracy = kCLLocationAccuracyBest
-        infoMap.delegate = self
-        infoMap.showsUserLocation = true
-        infoMap.showsCompass = false        //remove default compass
-        infoMap.showsPointsOfInterest = false
         self.navigationItem.title = viewTitle
-        
-        //Creating location tracking button
-        let buttonItem = MKUserTrackingButton(mapView: infoMap)
-        infoMap.addSubview(buttonItem)
-        buttonItem.translatesAutoresizingMaskIntoConstraints = false
-        buttonItem.trailingAnchor.constraint(equalTo: infoMap.trailingAnchor, constant: -12).isActive = true
-        buttonItem.topAnchor.constraint(equalTo: infoMap.topAnchor, constant: 55).isActive = true
-        buttonItem.backgroundColor = UIColor.black
-        buttonItem.layer.cornerRadius = buttonItem.frame.width/8.0
-        buttonItem.layer.masksToBounds = true
-        
-        //creating new compass button
-        let compassButton = MKCompassButton(mapView: infoMap)
-        compassButton.compassVisibility = .visible
-        infoMap.addSubview(compassButton)
-        compassButton.translatesAutoresizingMaskIntoConstraints = false
-        compassButton.trailingAnchor.constraint(equalTo: infoMap.trailingAnchor, constant: -12).isActive = true
-        compassButton.topAnchor.constraint(equalTo: infoMap.topAnchor, constant: 12).isActive = true
-        
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            infoMapMgr!.startUpdatingLocation()
-        } else {
-            infoMapMgr!.requestWhenInUseAuthorization()
-        }
         
         //Mask for rounded corners on timer label
         let rectShape = CAShapeLayer()
@@ -193,14 +162,66 @@ extension SavedCourseInfo: MKMapViewDelegate {
     
     // MARK: viewWillAppear()
     override func viewWillAppear(_ animated: Bool) {
+        // forcing autolayout to update to get timing button position
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        // helper prevents MKMapView declaration from disappearing
+        var helper: MKMapView
+        if isFirstViewing! {
+            isFirstViewing = false
+            helper = MKMapView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: StartStopTimerAttrs.frame.origin.y - UIApplication.shared.keyWindow!.safeAreaInsets.bottom))
+        } else {
+            helper = MKMapView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: StartStopTimerAttrs.frame.origin.y))
+        }
+        
+        // map & map manager setup
+        infoMap = helper
+        infoMap.delegate = self
+        infoMap.showsUserLocation = true
+        infoMap.showsCompass = false        //remove default compass
+        infoMap.showsPointsOfInterest = false
+        infoMapMgr = CLLocationManager()
+        infoMapMgr?.delegate = self
+        infoMapMgr?.desiredAccuracy = kCLLocationAccuracyBest
+        createInfoPolyline(mapView: infoMap)
+        
         // setting zoom
         let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
         let location = CLLocationCoordinate2D(latitude: infoMap.userLocation.coordinate.latitude, longitude: infoMap.userLocation.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: location, span: span)
         infoMap.setRegion(coordinateRegion, animated: true)
         infoMap.setUserTrackingMode(.followWithHeading, animated: true)
+        view.addSubview(infoMap)
         
-        //setting start and finish points
+        // creating location tracking button
+        let buttonItem = MKUserTrackingButton(mapView: infoMap)
+        infoMap.addSubview(buttonItem)
+        buttonItem.translatesAutoresizingMaskIntoConstraints = false
+        buttonItem.trailingAnchor.constraint(equalTo: infoMap.trailingAnchor, constant: -12).isActive = true
+        buttonItem.topAnchor.constraint(equalTo: infoMap.topAnchor, constant: 55).isActive = true
+        buttonItem.backgroundColor = UIColor.black
+        buttonItem.layer.cornerRadius = buttonItem.frame.width/8.0
+        buttonItem.layer.masksToBounds = true
+        
+        // creating new compass button
+        let compassButton = MKCompassButton(mapView: infoMap)
+        compassButton.compassVisibility = .visible
+        infoMap.addSubview(compassButton)
+        compassButton.translatesAutoresizingMaskIntoConstraints = false
+        compassButton.trailingAnchor.constraint(equalTo: infoMap.trailingAnchor, constant: -12).isActive = true
+        compassButton.topAnchor.constraint(equalTo: infoMap.topAnchor, constant: 12).isActive = true
+        
+        //bringing timer to front of view
+        view.bringSubviewToFront(TimerLabel)
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            infoMapMgr!.startUpdatingLocation()
+        } else {
+            infoMapMgr!.requestWhenInUseAuthorization()
+        }
+        
+        // setting start and finish points
             let start = MKPointAnnotation()
             start.coordinate = CLLocationCoordinate2DMake(savedLats[0], savedLons[0])
             start.title = "Start"
@@ -210,8 +231,17 @@ extension SavedCourseInfo: MKMapViewDelegate {
             end.coordinate = CLLocationCoordinate2DMake(savedLats[savedLats.count-1], savedLons[savedLons.count-1])
             end.title = "Finish"
             end.subtitle = "Finish Line"
-
+            
             infoMap.addAnnotation(start)
             infoMap.addAnnotation(end)
+    }
+    
+    
+    // MARK: viewDidDissappear()
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        infoMap.delegate = nil
+        infoMap.removeFromSuperview()
+        infoMap = nil
     }
 } // End of SavedCourseInfo Delegate
