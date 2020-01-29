@@ -25,61 +25,66 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     var regionRadius: CLLocationDistance = 15
     var didAllowLocation: Bool?
     
+    
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         if isFirstLaunch() {
             performSegue(withIdentifier: "tutorialSegue", sender: nil)
         }
-        locationMgr = CLLocationManager()
-        locationMgr?.delegate = self
-        locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
-        self.mapView.delegate = self
-        mapView.showsUserLocation = true    //Add user location
-        mapView.showsCompass = false        //remove default compass
-        mapView.showsPointsOfInterest = false
+//        locationMgr = CLLocationManager()
+//        locationMgr?.delegate = self
+//        locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
+//        self.mapView.delegate = self
+//        mapView.showsUserLocation = true    //Add user location
+//        mapView.showsCompass = false        //remove default compass
+//        mapView.showsPointsOfInterest = false
+//
+//        //creating new location tracker button
+//        let trackingBtn = MKUserTrackingButton(mapView: mapView)
+//        mapView.addSubview(trackingBtn)
+//        trackingBtn.translatesAutoresizingMaskIntoConstraints = false
+//        trackingBtn.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+//        trackingBtn.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 55).isActive = true
+//        trackingBtn.backgroundColor = UIColor.black
+//        trackingBtn.layer.cornerRadius = trackingBtn.frame.width/8.0
+//        trackingBtn.layer.masksToBounds = true
+//
+//        //creating new compass button
+//        let compassButton = MKCompassButton(mapView: mapView)
+//        compassButton.compassVisibility = .visible
+//        mapView.addSubview(compassButton)
+//        compassButton.translatesAutoresizingMaskIntoConstraints = false
+//        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+//        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
         
-        //creating new location tracker button
-        let trackingBtn = MKUserTrackingButton(mapView: mapView)
-        mapView.addSubview(trackingBtn)
-        trackingBtn.translatesAutoresizingMaskIntoConstraints = false
-        trackingBtn.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
-        trackingBtn.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 55).isActive = true
-        trackingBtn.backgroundColor = UIColor.black
-        trackingBtn.layer.cornerRadius = trackingBtn.frame.width/8.0
-        trackingBtn.layer.masksToBounds = true
-        
-        //creating new compass button
-        let compassButton = MKCompassButton(mapView: mapView)
-        compassButton.compassVisibility = .visible
-        mapView.addSubview(compassButton)
-        compassButton.translatesAutoresizingMaskIntoConstraints = false
-        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
-        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
-        
-        // If user location is already authorized, start tracking. Else request to track location
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationMgr!.startUpdatingLocation()
-        } else if CLLocationManager.authorizationStatus() == .denied{
-            let alert = UIAlertController(title: "Location Required!", message: "This app requires your location to function properly. Please allow location access in Settings.", preferredStyle: .alert)
-            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                    return
-                }
-
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                        print("Settings opened: \(success)")
-                    })
-                }
-            }
-            alert.addAction(settingsAction)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-        } else {
-            locationMgr!.requestWhenInUseAuthorization()
-        }
+//        // If user location is already authorized, start tracking. Else request to track location
+//        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+//            locationMgr!.startUpdatingLocation()
+//        } else if CLLocationManager.authorizationStatus() == .denied{
+//            let alert = UIAlertController(title: "Location Required!", message: "This app requires your location to function properly. Please allow location access in Settings.", preferredStyle: .alert)
+//            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+//                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+//                    return
+//                }
+//
+//                if UIApplication.shared.canOpenURL(settingsUrl) {
+//                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+//                        print("Settings opened: \(success)")
+//                    })
+//                }
+//            }
+//            alert.addAction(settingsAction)
+//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//        } else {
+//            locationMgr!.requestWhenInUseAuthorization()
+//        }
     }
+    
+    
+  
+    
     
     // MARK: isFirstLaunch()
     func isFirstLaunch() -> Bool {
@@ -242,7 +247,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     }
 } // End of MapVC Class
 
-
 // MARK: MapVC Delegate
 extension MapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -255,9 +259,82 @@ extension MapVC: MKMapViewDelegate {
         return MKPolylineRenderer(overlay: overlay)
     }
     
-    // MARK: viewWillAppear() delegate
-    override func viewWillAppear(_ animated: Bool) {
-        // setting zoom
-        mapView.setUserTrackingMode(.follow, animated: true)
+    override func viewDidLayoutSubviews() {
+       
     }
+    
+    // MARK: viewWillAppear()
+    override func viewWillAppear(_ animated: Bool) {
+        // forcing autolayout to run to get TrackingButtonAttrs position value
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+
+        // setting zoom
+        locationMgr = CLLocationManager()
+        locationMgr?.delegate = self
+        locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
+        
+        // helper prevents MKMapView declaration from disappearing
+        let helper = MKMapView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: TrackingButtonAttrs.frame.origin.y - UIApplication.shared.keyWindow!.safeAreaInsets.bottom))
+        
+        mapView = helper
+        mapView.delegate = self
+        mapView.showsUserLocation = true    //Add user location
+        mapView.showsCompass = false        //remove default compass
+        mapView.showsPointsOfInterest = false
+        
+        //creating new location tracker button
+        let trackingBtn = MKUserTrackingButton(mapView: mapView)
+        mapView.addSubview(trackingBtn)
+        trackingBtn.translatesAutoresizingMaskIntoConstraints = false
+        trackingBtn.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+        trackingBtn.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 55).isActive = true
+        trackingBtn.backgroundColor = UIColor.black
+        trackingBtn.layer.cornerRadius = trackingBtn.frame.width/8.0
+        trackingBtn.layer.masksToBounds = true
+        
+        //creating new compass button
+        let compassButton = MKCompassButton(mapView: mapView)
+        compassButton.compassVisibility = .visible
+        mapView.addSubview(compassButton)
+        compassButton.translatesAutoresizingMaskIntoConstraints = false
+        compassButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -12).isActive = true
+        compassButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 12).isActive = true
+        mapView.setUserTrackingMode(.follow, animated: true)
+        view.addSubview(mapView)
+        
+        // If user location is already authorized, start tracking. Else request to track location
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationMgr!.startUpdatingLocation()
+        } else if CLLocationManager.authorizationStatus() == .denied{
+            let alert = UIAlertController(title: "Location Required!", message: "This app requires your location to function properly. Please allow location access in Settings.", preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)")
+                    })
+                }
+            }
+            alert.addAction(settingsAction)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        } else {
+            locationMgr!.requestWhenInUseAuthorization()
+        }
+        
+        view.bringSubviewToFront(TrackingButtonAttrs)
+    }
+    
+    
+    // MARK: viewDidDisappear()
+    override func viewDidDisappear(_ animated: Bool) {
+          super.viewDidDisappear(animated)
+          mapView.delegate = nil
+          mapView.removeFromSuperview()
+          mapView = nil
+      }
 } // End of MapVC Delegate
