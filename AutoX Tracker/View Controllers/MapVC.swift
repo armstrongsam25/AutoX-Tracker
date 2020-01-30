@@ -30,6 +30,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
+        // setting accuracy
+        locationMgr = CLLocationManager()
+        locationMgr?.delegate = self
+        locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
         if isFirstLaunch() {
             performSegue(withIdentifier: "tutorialSegue", sender: nil)
         }
@@ -52,6 +56,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         //Allow Once and Allow while using both use this
+        print("here")
         if status == .authorizedWhenInUse {
             didAllowLocation = true;
             manager.startUpdatingLocation()
@@ -215,11 +220,6 @@ extension MapVC: MKMapViewDelegate {
         // forcing autolayout to run to get TrackingButtonAttrs position value
         view.setNeedsLayout()
         view.layoutIfNeeded()
-
-        // setting zoom
-        locationMgr = CLLocationManager()
-        locationMgr?.delegate = self
-        locationMgr?.desiredAccuracy = kCLLocationAccuracyBest
         
         // helper prevents MKMapView declaration from disappearing
         var helper: MKMapView
@@ -265,7 +265,7 @@ extension MapVC: MKMapViewDelegate {
         // If user location is already authorized, start tracking. Else request to track location
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationMgr!.startUpdatingLocation()
-        } else if CLLocationManager.authorizationStatus() == .denied || CLLocationManager.authorizationStatus() == .notDetermined {
+        } else if CLLocationManager.authorizationStatus() == .denied {
             let alert = UIAlertController(title: "Location Required!", message: "This app requires your location to function properly. Please allow location access in Settings.", preferredStyle: .alert)
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
@@ -289,9 +289,10 @@ extension MapVC: MKMapViewDelegate {
     
     // MARK: viewDidDisappear()
     override func viewDidDisappear(_ animated: Bool) {
-          super.viewDidDisappear(animated)
-          mapView.delegate = nil
-          mapView.removeFromSuperview()
-          mapView = nil
+        super.viewDidDisappear(animated)
+        mapView.delegate = nil
+        mapView.removeFromSuperview()
+        mapView = nil
+        locationMgr!.stopUpdatingLocation()
       }
 } // End of MapVC Delegate

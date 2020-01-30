@@ -222,18 +222,18 @@ extension SavedCourseInfo: MKMapViewDelegate {
         }
         
         // setting start and finish points
-            let start = MKPointAnnotation()
-            start.coordinate = CLLocationCoordinate2DMake(savedLats[0], savedLons[0])
-            start.title = "Start"
-            start.subtitle = "Start Line"
-            
-            let end = MKPointAnnotation()
-            end.coordinate = CLLocationCoordinate2DMake(savedLats[savedLats.count-1], savedLons[savedLons.count-1])
-            end.title = "Finish"
-            end.subtitle = "Finish Line"
-            
-            infoMap.addAnnotation(start)
-            infoMap.addAnnotation(end)
+        let start = MKPointAnnotation()
+        start.coordinate = CLLocationCoordinate2DMake(savedLats[0], savedLons[0])
+        start.title = "Start"
+        start.subtitle = "Start Line"
+        
+        let end = MKPointAnnotation()
+        end.coordinate = CLLocationCoordinate2DMake(savedLats[savedLats.count-1], savedLons[savedLons.count-1])
+        end.title = "Finish"
+        end.subtitle = "Finish Line"
+        
+        infoMap.addAnnotation(start)
+        infoMap.addAnnotation(end)
     }
     
     
@@ -243,5 +243,6 @@ extension SavedCourseInfo: MKMapViewDelegate {
         infoMap.delegate = nil
         infoMap.removeFromSuperview()
         infoMap = nil
+        infoMapMgr!.stopUpdatingLocation()
     }
 } // End of SavedCourseInfo Delegate

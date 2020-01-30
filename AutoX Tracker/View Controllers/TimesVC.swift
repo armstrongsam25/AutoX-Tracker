@@ -22,7 +22,6 @@ class TimesVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         tableView.allowsSelection = false
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
@@ -31,8 +30,8 @@ class TimesVC: UITableViewController {
         //ad setup
         adBanner = GADBannerView(adSize: kGADAdSizeBanner )
         addBannerViewToView(adBanner)
-        adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
-        //adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
+        //adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
+        adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }
