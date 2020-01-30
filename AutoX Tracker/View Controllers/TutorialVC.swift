@@ -107,6 +107,7 @@ class LastTutVC: UIViewController {
     // MARK: viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
+        dismiss.layer.cornerRadius = 9
         dismiss.layer.borderWidth = 2
         dismiss.layer.borderColor = UIColor.darkGray.cgColor
     }
