@@ -56,7 +56,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     //0 == nonDetermined, 1 == restricted, 2 == denied, authorizedAlways == 3, authorizedwheninuse == 4
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         //Allow Once and Allow while using both use this
-        print("here")
         if status == .authorizedWhenInUse {
             didAllowLocation = true;
             manager.startUpdatingLocation()
