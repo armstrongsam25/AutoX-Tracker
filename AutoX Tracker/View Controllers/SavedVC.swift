@@ -18,12 +18,13 @@ class SavedVC: UITableViewController {
         let editButton = self.editButtonItem
         editButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 19)!], for: UIControl.State.normal)
         self.navigationItem.rightBarButtonItem = editButton
+        tableView.allowsSelectionDuringEditing = true;
         
         //ad setup
         adBanner = GADBannerView(adSize: kGADAdSizeBanner )
         addBannerViewToView(adBanner)
-        //adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
-        adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
+        adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
+        //adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }
@@ -126,10 +127,44 @@ class SavedVC: UITableViewController {
     }
     
     
+    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.isEditing == true {
+            //let courseCount = savedTracks.count + 1
+            let oldName = savedTracks[indexPath.row].title
+            let alert = UIAlertController(title: "Rename Course", message: "Enter a name for your course.", preferredStyle: .alert)
+            alert.addTextField { (textField) in
+                textField.placeholder = oldName
+            }
+            alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
+                let textField = alert?.textFields![0]
+                if textField!.text! == "" {
+                    textField!.text = oldName
+                }
+                savedTracks[indexPath.row].title = textField!.text!
+                saveToUserDefaults(tracks: savedTracks)
+                tableView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion:  nil)
+        }
+        
+    }
+    
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return !self.isEditing
     }
     
     
