@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import GoogleMobileAds
 
 class SavedVC: UITableViewController {
@@ -84,6 +85,7 @@ class SavedVC: UITableViewController {
         cell.courseImage?.image = savedTracks[indexPath.row].image
         cell.textLabel1?.text = savedTracks[indexPath.row].title
         cell.textLabel2?.text = "Created: \(savedTracks[indexPath.row].dateCreated)"
+        cell.Distance?.text = "\(calculateDist(track: savedTracks[indexPath.row])) mi"
         return cell
     }
     
@@ -168,6 +170,22 @@ class SavedVC: UITableViewController {
     }
     
     
+    // MARK: calculateDist()
+    func calculateDist(track: TrackModel) -> Double {
+        var totalDist = 0.00
+        var i = 0
+        while i < track.latArray.count - 1 {
+            let coord1 = CLLocation(latitude: track.latArray[i], longitude: track.lonArray[i])
+            let coord2 = CLLocation(latitude: track.latArray[i+1], longitude: track.lonArray[i+1])
+            let meters = Measurement(value: coord1.distance(from: coord2), unit: UnitLength.meters)
+            
+            totalDist += meters.converted(to: UnitLength.miles).value
+            i += 1
+        }
+        return round(100.0 * totalDist) / 100.0
+    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -195,5 +213,6 @@ class SavedVC: UITableViewController {
 class SavedCell: UITableViewCell {
     @IBOutlet weak var textLabel1: UILabel!
     @IBOutlet weak var textLabel2: UILabel!
+    @IBOutlet weak var Distance: UILabel!
     @IBOutlet weak var courseImage: UIImageView!
 }

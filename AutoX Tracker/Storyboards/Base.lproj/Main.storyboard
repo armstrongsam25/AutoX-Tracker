@@ -131,7 +131,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IH3-lY-6ZG">
-                                            <rect key="frame" x="93" y="11" width="255" height="30"/>
+                                            <rect key="frame" x="93" y="6" width="255" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="83F-Vb-sHg"/>
                                             </constraints>
@@ -141,7 +141,7 @@
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Created" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAN-h8-czK">
-                                            <rect key="frame" x="93" y="60" width="255" height="21"/>
+                                            <rect key="frame" x="93" y="65" width="255" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -153,19 +153,32 @@
                                                 <constraint firstAttribute="height" constant="80" id="a6F-Qq-i6d"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhU-IV-eT2">
+                                            <rect key="frame" x="93" y="33" width="200" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="OOM-wT-7uT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="KAN-h8-czK" secondAttribute="trailing" id="RFJ-bZ-q67"/>
                                         <constraint firstAttribute="trailing" secondItem="IH3-lY-6ZG" secondAttribute="trailing" id="RG4-56-ASn"/>
-                                        <constraint firstItem="KAN-h8-czK" firstAttribute="bottom" secondItem="fd9-Ke-NPt" secondAttribute="bottomMargin" id="Wie-fr-5o9"/>
+                                        <constraint firstItem="KAN-h8-czK" firstAttribute="bottom" secondItem="fd9-Ke-NPt" secondAttribute="bottomMargin" constant="5" id="Wie-fr-5o9"/>
                                         <constraint firstItem="Oa7-UM-i02" firstAttribute="leading" secondItem="fd9-Ke-NPt" secondAttribute="leading" constant="5" id="YOn-sb-1fK"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dhU-IV-eT2" secondAttribute="bottom" constant="12" id="Yhc-pK-t07"/>
                                         <constraint firstItem="Oa7-UM-i02" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" constant="-5" id="cFL-KU-DG2"/>
                                         <constraint firstItem="KAN-h8-czK" firstAttribute="leading" secondItem="IH3-lY-6ZG" secondAttribute="leading" id="dUi-Ua-yOh"/>
+                                        <constraint firstItem="dhU-IV-eT2" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" constant="22" id="lA1-KE-uls"/>
                                         <constraint firstItem="IH3-lY-6ZG" firstAttribute="leading" secondItem="Oa7-UM-i02" secondAttribute="trailing" constant="8" symbolic="YES" id="tpc-Vs-Wf7"/>
-                                        <constraint firstItem="IH3-lY-6ZG" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" id="wCZ-zc-e6r"/>
+                                        <constraint firstItem="dhU-IV-eT2" firstAttribute="leading" secondItem="Oa7-UM-i02" secondAttribute="trailing" constant="8" id="vWo-B3-Kbf"/>
+                                        <constraint firstItem="IH3-lY-6ZG" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" constant="-5" id="wCZ-zc-e6r"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="Distance" destination="dhU-IV-eT2" id="SiW-Aj-ujg"/>
                                     <outlet property="courseImage" destination="Oa7-UM-i02" id="5kX-D9-iPc"/>
                                     <outlet property="textLabel1" destination="IH3-lY-6ZG" id="S6d-gE-p93"/>
                                     <outlet property="textLabel2" destination="KAN-h8-czK" id="1lY-JU-qF5"/>

@@ -176,19 +176,18 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
             savedTimes.append([])
             saveToUserDefaults(tracks: savedTracks)
             saveTimesToUserDefaults(times: savedTimes)
-            self.mapView.removeOverlay(self.geodesic)
-            capturedTracks.removeAll()
-            coordinantsForTracks.removeAll()
+            //self.mapView.removeOverlay(self.geodesic)
+            //capturedTracks.removeAll()
+            //coordinantsForTracks.removeAll()
             latitudeForTracks.removeAll()
             longitudeForTracks.removeAll()
         }))
-        alert.addAction(UIAlertAction(title: "Disgard", style: .cancel, handler: { [weak alert] (_) in
-            //remove polyline from screen
-            self.mapView.removeOverlay(self.geodesic)
-            capturedTracks.removeAll()
-            coordinantsForTracks.removeAll()
-        }))
+        alert.addAction(UIAlertAction(title: "Disgard", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion:  nil)
+        
+        self.mapView.removeOverlay(self.geodesic)
+        capturedTracks.removeAll()
+        coordinantsForTracks.removeAll()
     }
     
     
