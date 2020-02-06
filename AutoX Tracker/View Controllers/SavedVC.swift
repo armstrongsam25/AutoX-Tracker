@@ -158,7 +158,9 @@ class SavedVC: UITableViewController {
                 saveToUserDefaults(tracks: savedTracks)
                 tableView.reloadData()
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alert: UIAlertAction!) in
+                tableView.deselectRow(at: indexPath, animated: false)
+            }))
             self.present(alert, animated: true, completion:  nil)
         }
         
@@ -182,7 +184,7 @@ class SavedVC: UITableViewController {
             totalDist += meters.converted(to: UnitLength.miles).value
             i += 1
         }
-        return round(100.0 * totalDist) / 100.0
+        return round(1000.0 * totalDist) / 1000.0
     }
     
     
