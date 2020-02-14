@@ -131,7 +131,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IH3-lY-6ZG">
-                                            <rect key="frame" x="93" y="11" width="255" height="30"/>
+                                            <rect key="frame" x="93" y="6" width="255" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="83F-Vb-sHg"/>
                                             </constraints>
@@ -141,7 +141,7 @@
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Created" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAN-h8-czK">
-                                            <rect key="frame" x="93" y="60" width="255" height="21"/>
+                                            <rect key="frame" x="93" y="65" width="255" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -153,19 +153,32 @@
                                                 <constraint firstAttribute="height" constant="80" id="a6F-Qq-i6d"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhU-IV-eT2">
+                                            <rect key="frame" x="93" y="33" width="200" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="OOM-wT-7uT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="KAN-h8-czK" secondAttribute="trailing" id="RFJ-bZ-q67"/>
                                         <constraint firstAttribute="trailing" secondItem="IH3-lY-6ZG" secondAttribute="trailing" id="RG4-56-ASn"/>
-                                        <constraint firstItem="KAN-h8-czK" firstAttribute="bottom" secondItem="fd9-Ke-NPt" secondAttribute="bottomMargin" id="Wie-fr-5o9"/>
+                                        <constraint firstItem="KAN-h8-czK" firstAttribute="bottom" secondItem="fd9-Ke-NPt" secondAttribute="bottomMargin" constant="5" id="Wie-fr-5o9"/>
                                         <constraint firstItem="Oa7-UM-i02" firstAttribute="leading" secondItem="fd9-Ke-NPt" secondAttribute="leading" constant="5" id="YOn-sb-1fK"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dhU-IV-eT2" secondAttribute="bottom" constant="12" id="Yhc-pK-t07"/>
                                         <constraint firstItem="Oa7-UM-i02" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" constant="-5" id="cFL-KU-DG2"/>
                                         <constraint firstItem="KAN-h8-czK" firstAttribute="leading" secondItem="IH3-lY-6ZG" secondAttribute="leading" id="dUi-Ua-yOh"/>
+                                        <constraint firstItem="dhU-IV-eT2" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" constant="22" id="lA1-KE-uls"/>
                                         <constraint firstItem="IH3-lY-6ZG" firstAttribute="leading" secondItem="Oa7-UM-i02" secondAttribute="trailing" constant="8" symbolic="YES" id="tpc-Vs-Wf7"/>
-                                        <constraint firstItem="IH3-lY-6ZG" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" id="wCZ-zc-e6r"/>
+                                        <constraint firstItem="dhU-IV-eT2" firstAttribute="leading" secondItem="Oa7-UM-i02" secondAttribute="trailing" constant="8" id="vWo-B3-Kbf"/>
+                                        <constraint firstItem="IH3-lY-6ZG" firstAttribute="top" secondItem="fd9-Ke-NPt" secondAttribute="topMargin" constant="-5" id="wCZ-zc-e6r"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="Distance" destination="dhU-IV-eT2" id="SiW-Aj-ujg"/>
                                     <outlet property="courseImage" destination="Oa7-UM-i02" id="5kX-D9-iPc"/>
                                     <outlet property="textLabel1" destination="IH3-lY-6ZG" id="S6d-gE-p93"/>
                                     <outlet property="textLabel2" destination="KAN-h8-czK" id="1lY-JU-qF5"/>
@@ -265,7 +278,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gMt-kf-4VI">
                                 <rect key="frame" x="0.0" y="206" width="375" height="417"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">This app aims to help you learn dynamic/inconsistent courses (mainly autocross) by leaving a breadcrumb trail as you walk the course for the first time.   It is recommended to mount your device to your dashboard or another surface where you can have a clear view of the screen.  Once you have the course mapped, press on the course you about to run. This will bring up the Course View and Lap Timer. When you leave the start line press the "Start Timer" button, and drive around the course.  If you get lost, glance at your device and you will see where you are/need to be.  After crossing the finish line, press the "Stop Timing" button to save your lap time. Press the "Times" button to view your lap times.   -- If you like the app, please leave a review on the App Store!  😄  DISCLAIMER: This app is intended for use on a supervised closed course. Do NOT use this app while driving on public roads. Do not let this app distract you from controlling your vehicle. Take extreme safety precautions when using this app. If you wreck, we do not take responsibility or liability for any damages to your vehicle while using this app.  </string>
+                                <mutableString key="text">What's New: • Bug Fixes/Overall Improvement • Added Distance to Courses  -- If you like the app, please leave a review on the App Store!  😄  DISCLAIMER: This app is intended for use on a supervised closed course. Do NOT use this app while driving on public roads. Do not let this app distract you from controlling your vehicle. Take extreme safety precautions when using this app. If you wreck, we do not take responsibility or liability for any damages to your vehicle while using this app.  </mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
@@ -278,8 +291,8 @@
                                     <constraint firstAttribute="width" constant="128" id="Q43-FN-YJt"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ver: 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVl-VL-WqN">
-                                <rect key="frame" x="156" y="138" width="63" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ver: 1.0.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVl-VL-WqN">
+                                <rect key="frame" x="157.5" y="138" width="60.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

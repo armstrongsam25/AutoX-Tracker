@@ -24,7 +24,6 @@ public class TrackModel {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
         
-        //self.image = UIImage(named: "SavedTrackImage.png") // TODO: set to static image
         self.title = title
         self.dateCreated = formatter.string(from: date)
         self.latArray = lat
@@ -32,7 +31,6 @@ public class TrackModel {
     }
     
     init(title: String, date: String, lat: [Double], lon: [Double]){
-        //self.image = UIImage(named: "SavedTrackImage.png") // TODO: set to static image
         self.title = title
         self.dateCreated = date
         self.latArray = lat
@@ -40,7 +38,6 @@ public class TrackModel {
     }
     
     init(){
-        //self.image = UIImage(named: "SavedTrackImage.png")
         self.title = ""
         self.dateCreated = ""
         self.latArray = []
