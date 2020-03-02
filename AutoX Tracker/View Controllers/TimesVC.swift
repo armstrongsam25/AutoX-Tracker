@@ -30,8 +30,8 @@ class TimesVC: UITableViewController {
         //ad setup
         adBanner = GADBannerView(adSize: kGADAdSizeBanner )
         addBannerViewToView(adBanner)
-        adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
-        //adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
+        //adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
+        adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }
