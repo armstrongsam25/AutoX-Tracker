@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import GoogleMobileAds
+import StoreKit
 
 class SavedVC: UITableViewController {
     var adBanner: GADBannerView!
@@ -24,10 +25,28 @@ class SavedVC: UITableViewController {
         //ad setup
         adBanner = GADBannerView(adSize: kGADAdSizeBanner )
         addBannerViewToView(adBanner)
-        //adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
-        adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
+        adBanner.adUnitID = "ca-app-pub-3940256099942544/2934735716" // TESTING
+        // adBanner.adUnitID = "ca-app-pub-4895210659623653/2815181432" // ACTUAL
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
+        
+        // If the count has not yet been stored, this will return 0
+        var count = UserDefaults.standard.integer(forKey: "processCompletedCountKey")
+        count += 1
+        UserDefaults.standard.set(count, forKey: "processCompletedCountKey")
+        // Get the current bundle version for the app
+        let infoDictionaryKey = kCFBundleVersionKey as String
+        guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String
+            else { fatalError("Expected to find a bundle version in the info dictionary") }
+        let lastVersionPromptedForReview = UserDefaults.standard.string(forKey: "lastVersionPromptedForReviewKey")
+        // Has the process been completed several times and the user has not already been prompted for this version?
+        if count >= 10 && currentVersion != lastVersionPromptedForReview {
+            let twoSecondsFromNow = DispatchTime.now() + 2.0
+            DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) {
+                SKStoreReviewController.requestReview()
+                UserDefaults.standard.set(currentVersion, forKey: "lastVersionPromptedForReviewKey")
+            }
+        }
     }
     
     
